@@ -7,6 +7,7 @@ import CheckPage from './pages/CheckPage';
 import ResultPage from './pages/ResultPage';
 import PricingPage from './pages/PricingPage';
 import LegalContentPage from './pages/LegalContentPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/privacy" element={<LegalContentPage type="privacy" />} />
               <Route path="/terms" element={<LegalContentPage type="terms" />} />
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </main>
           <Footer />

@@ -10,7 +10,7 @@ import { useAuth } from '../context/AuthContext';
 export default function ResultPage() {
   const location = useLocation();
   const { verdictData, situation, region = 'USA' } = location.state || {};
-  const { user, userPlan } = useAuth();
+  const { user, userPlan, isAdmin } = useAuth();
 
   const [showModal, setShowModal] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -18,8 +18,8 @@ export default function ResultPage() {
   const [loadingAlt, setLoadingAlt] = useState(false);
   const [altError, setAltError] = useState('');
 
-  // Plan is premium if it's 'yearly' (legacy 'lifetime' also counts as premium)
-  const isPremium = userPlan?.plan === 'yearly' || userPlan?.plan === 'lifetime';
+  // Plan is premium if it's 'yearly', 'lifetime', or if the user is an admin
+  const isPremium = userPlan?.plan === 'yearly' || userPlan?.plan === 'lifetime' || isAdmin;
 
   // Save check to Firebase
   useEffect(() => {

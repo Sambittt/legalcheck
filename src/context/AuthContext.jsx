@@ -29,8 +29,11 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const adminEmails = (import.meta.env.VITE_ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase());
+  const isAdmin = user && user.email && adminEmails.includes(user.email.toLowerCase());
+
   return (
-    <AuthContext.Provider value={{ user, userPlan, authLoading, refreshPlan }}>
+    <AuthContext.Provider value={{ user, userPlan, authLoading, refreshPlan, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

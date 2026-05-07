@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { signInWithGoogle, signOutUser } from '../services/firebase';
 
 export default function Navbar() {
-  const { user, userPlan } = useAuth();
+  const { user, userPlan, isAdmin } = useAuth();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,12 +28,19 @@ export default function Navbar() {
         </Link>
 
         <div className="nav-links">
+          {isAdmin && (
+            <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`} style={{ color: 'var(--accent-l)' }}>Admin</Link>
+          )}
           <Link to="/check" className={`nav-link ${location.pathname === '/check' ? 'active' : ''}`}>Check</Link>
           <Link to="/pricing" className={`nav-link ${location.pathname === '/pricing' ? 'active' : ''}`}>Pricing</Link>
 
           {user ? (
             <div className="nav-user">
-              {isPlanLifetime && <span className="plan-badge">Lifetime</span>}
+              {isAdmin ? (
+                <span className="plan-badge" style={{ background: 'var(--accent)', color: '#fff', border: 'none' }}>Admin</span>
+              ) : (
+                isPlanLifetime && <span className="plan-badge">Lifetime</span>
+              )}
               <button className="btn btn-ghost btn-sm" onClick={handleAuth}>Sign Out</button>
             </div>
           ) : (
