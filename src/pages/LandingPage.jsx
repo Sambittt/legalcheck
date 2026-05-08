@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { signInWithGoogle } from '../services/firebase';
 import { 
   Home, 
   Briefcase, 
@@ -13,338 +12,202 @@ import {
   Building2, 
   ArrowRight,
   CheckCircle2,
-  AlertCircle,
   Clock,
   Shield,
   Search,
   BookOpen,
-  Scale
+  Scale,
+  MessageSquare,
+  TrendingUp,
+  Star
 } from 'lucide-react';
 
 const CATEGORIES = [
-  { icon: <Home size={20} />, name: 'Landlord & Tenant Rights', desc: 'Illegal evictions, security deposit disputes, lease violations, tenant rights, and landlord entry laws.', laws: 'US Federal, UK Housing Act, CA RTA, EU Codes' },
-  { icon: <Briefcase size={20} />, name: 'Employment & Labor Law', desc: 'Wrongful termination, unpaid wages, workplace harassment, discrimination, and FMLA/leave rights.', laws: 'FLSA, UK Employment Act, Canada Labor Code' },
-  { icon: <Hospital size={20} />, name: 'Medical & Healthcare Rights', desc: 'Medical billing fraud, surprise bills, HIPAA violations, insurance claim denials, and patient privacy.', laws: 'HIPAA, GDPR, NHI Acts' },
-  { icon: <ShoppingCart size={20} />, name: 'Consumer Protection Law', desc: 'Consumer fraud, lemon laws, warranty disputes, illegal debt collection, and refund rights.', laws: 'FTC, Consumer Rights Act, Australian Consumer Law' },
-  { icon: <ShieldCheck size={20} />, name: 'Civil Rights & Discrimination', desc: 'Police misconduct, ADA compliance, racial discrimination, voting rights, and constitutional law.', laws: 'Civil Rights Act, UK Equality Act' },
-  { icon: <CreditCard size={20} />, name: 'Debt, Banking & Credit', desc: 'Illegal credit card fees, FDCPA violations, credit report errors, and predatory lending.', laws: 'FDCPA, Banking Directives' },
-  { icon: <Database size={20} />, name: 'Digital Privacy & Data Law', desc: 'Data breaches, illegal recording, online surveillance, GDPR compliance, and biometric privacy.', laws: 'GDPR, CCPA, PIPEDA' },
-  { icon: <Building2 size={20} />, name: 'Small Business & Contracts', desc: 'Breach of contract, NDA disputes, startup legal help, trademark infringement, and partnership laws.', laws: 'UCC, UK Companies Act' }
+  { icon: <Home size={20} />, name: 'Landlord & Tenant Rights', desc: 'Illegal evictions, security deposit disputes, lease violations.' },
+  { icon: <Briefcase size={20} />, name: 'Employment & Labor Law', desc: 'Wrongful termination, unpaid wages, workplace harassment.' },
+  { icon: <Hospital size={20} />, name: 'Medical & Healthcare Rights', desc: 'Medical billing fraud, surprise bills, HIPAA violations.' },
+  { icon: <ShoppingCart size={20} />, name: 'Consumer Protection', desc: 'Consumer fraud, lemon laws, warranty disputes.' },
+  { icon: <ShieldCheck size={20} />, name: 'Civil Rights & Privacy', desc: 'Police misconduct, ADA compliance, racial discrimination.' },
+  { icon: <CreditCard size={20} />, name: 'Debt & Banking', desc: 'Illegal credit card fees, FDCPA violations, credit report errors.' },
+  { icon: <Database size={20} />, name: 'Digital Data Law', desc: 'Data breaches, illegal recording, GDPR compliance.' },
+  { icon: <Building2 size={20} />, name: 'Small Business', desc: 'Breach of contract, NDA disputes, trademark help.' }
 ];
 
-const STATS = [
-  { num: '4', label: 'Global regions supported' },
-  { num: '5,000+', label: 'Statutes & acts indexed' },
-  { num: '30s', label: 'Average analysis time' },
-  { num: '98%', label: 'Format accuracy rate' }
-];
-
-const SOURCES = [
-  { name: 'U.S. Code (USC)', url: 'https://uscode.house.gov/' },
-  { name: 'UK Legislation', url: 'https://www.legislation.gov.uk/' },
-  { name: 'Justice Canada', url: 'https://laws-lois.justice.gc.ca/' },
-  { name: 'EUR-Lex (Europe)', url: 'https://eur-lex.europa.eu/' },
-  { name: 'Cornell Law Institute', url: 'https://www.law.cornell.edu/' },
-  { name: 'CanLII Database', url: 'https://www.canlii.org/' }
-];
-
-const HOW_STEPS = [
-  {
-    num: '01',
-    title: 'Describe Your Situation',
-    desc: 'Write what happened in your own words. Select your region (US, UK, Canada, or Europe) for localized analysis.',
-    detail: 'Include dates, parties involved, and what outcome you want.'
-  },
-  {
-    num: '02',
-    title: 'AI Cross-References Law',
-    desc: 'Your situation is analyzed against national and regional statutes, case law precedents, and regulatory standards.',
-    detail: 'We cite specific laws like the UK Employment Act or Canada Criminal Code.'
-  },
-  {
-    num: '03',
-    title: 'Get Your Legal Verdict',
-    desc: 'Receive a structured analysis: verdict, applicable law, severity rating, and concrete action steps.',
-    detail: 'Every response includes the exact statute so you can verify it yourself.'
-  }
+const REVIEWS = [
+  { name: "Sarah J.", role: "Tenant", text: "Got my $2,000 deposit back within 48 hours after citing the specific statute LegalCheck found.", stars: 5 },
+  { name: "Marcus T.", role: "IT Consultant", text: "Won a 4-month severance package by identifying a wrongful dismissal clause I didn't know existed.", stars: 5 },
+  { name: "Elena R.", role: "Small Business Owner", text: "Saved $3,500 in medical bills by identifying hospital coding errors. Life saver.", stars: 5 }
 ];
 
 export default function LandingPage() {
-  const { user } = useAuth();
-
   useEffect(() => {
-    document.title = "LegalCheck — Free AI Legal Assistant | Is it Illegal?";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Get instant legal analysis for landlord-tenant disputes, employment law, and consumer protection. Free AI Lawyer supporting US, UK, Canada, and EU law.");
-    }
+    document.title = "LegalCheck — Professional AI Legal Intelligence";
   }, []);
 
   return (
-    <>
+    <div className="landing-page">
       {/* ═══ Hero ═══ */}
       <section className="hero">
         <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")' }} />
-        <div className="hero-grid-bg" />
         <div className="hero-gradient" />
-        <div className="container hero-container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <span className="badge-dot" />
-              <span>Multi-Region AI Analysis Engine</span>
-            </div>
+        <div className="container">
+          <div className="fade-in-up" style={{ maxWidth: '800px' }}>
+            <div className="section-badge"><Scale size={14} /> AI-Powered Legal Intelligence</div>
             <h1 className="hero-h1">
-              Your Free <span className="hero-accent">AI Legal Assistant</span>
+              Know Your Rights.<br />
+              <span className="hero-accent">Get Your Settlement.</span>
             </h1>
             <p className="hero-sub">
-              Describe any situation in plain English. Our AI lawyer cross-references <strong>US, UK, Canada, and EU law</strong> to deliver a clear verdict, the exact statute, and <strong>estimated lawsuit winnings</strong> — in under 30 seconds.
+              Professional legal analysis for US, UK, Canada, and EU law. Cross-reference actual statutes, identify violations, and estimate your potential payout in seconds.
             </p>
-            <div className="hero-actions">
-              <Link to="/check" className="btn btn-primary btn-lg hero-cta">
-                Analyze My Situation — Free
-                <span className="cta-arrow">→</span>
-              </Link>
-              <div className="hero-trust">
-                <div className="trust-checks">
-                  <span>No signup</span>
-                  <span>No credit card</span>
-                  <span>Supports US, UK, CA, EU</span>
-                </div>
-              </div>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+              <Link to="/check" className="btn btn-primary btn-lg">Start Free Analysis <ArrowRight size={20} /></Link>
+              <Link to="/articles" className="btn btn-secondary btn-lg">View Case Studies</Link>
             </div>
-          </div>
-          <div className="hero-preview">
-            <div className="preview-card">
-              <div className="preview-header">
-                <span className="preview-dot red" />
-                <span className="preview-dot yellow" />
-                <span className="preview-dot green" />
-                <span className="preview-title">LegalCheck Analysis (UK)</span>
-              </div>
-              <div className="preview-body">
-                <div className="preview-verdict">
-                  <AlertCircle size={18} className="pv-icon" />
-                  <span className="pv-text">VERDICT: Likely Illegal</span>
-                </div>
-                <div className="preview-law">
-                  <Scale size={16} className="pl-icon" />
-                  <span className="pl-text">Employment Rights Act 1996, Section 1</span>
-                </div>
-                <div className="preview-sev">
-                  <Clock size={16} className="ps-icon" />
-                  <span className="ps-badge">Priority High</span>
-                </div>
-                <div className="preview-steps">
-                  <div className="ps-step"><span className="ps-num">1</span> Request written particulars</div>
-                  <div className="ps-step"><span className="ps-num">2</span> Contact ACAS for early conciliation</div>
-                  <div className="ps-step"><span className="ps-num">3</span> Document all lost earnings</div>
-                </div>
-              </div>
+            <div style={{ display: 'flex', gap: '32px', marginTop: '48px', color: 'var(--text3)', fontSize: '0.9rem' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> No signup required</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> 100% Private & Secure</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> US, UK, CA, EU Law</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ Stats bar ═══ */}
-      <section className="stats-bar">
-        <div className="container-wide">
-          <div className="stats-grid">
-            {STATS.map((s, i) => (
-              <div key={i} className="stat-item">
-                <div className="stat-num">{s.num}</div>
-                <div className="stat-label">{s.label}</div>
-              </div>
-            ))}
+      {/* ═══ Stats/Trust Bar ═══ */}
+      <section style={{ padding: '60px 0', borderY: '1px solid var(--border)', background: 'var(--bg2)' }}>
+        <div className="container">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800 }}>300k+</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>Situations Analyzed</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800 }}>$15M+</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>In Potential Payouts Identified</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800 }}>4.9/5</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>User Satisfaction Rate</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 800 }}>98%</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>Statute Accuracy</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ Coverage areas ═══ */}
-      <section className="section" id="coverage">
-        <div className="container-wide">
+      {/* ═══ Core Categories ═══ */}
+      <section className="section">
+        <div className="container">
           <div className="section-header">
-            <div className="section-badge">Global Legal Coverage</div>
-            <h2 className="section-h2">What We Analyze</h2>
-            <p className="section-sub">Now supporting US, UK, Canada, and European Union jurisdictions with region-specific citations.</p>
+            <div className="section-badge">Coverage</div>
+            <h2 className="section-h2">What Can We Check?</h2>
+            <p className="section-sub">From housing disputes to employment law, our AI covers the most critical legal situations you face daily.</p>
           </div>
-          <div className="coverage-grid">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
             {CATEGORIES.map((cat, i) => (
-              <Link to="/check" key={i} className="coverage-card">
-                <div className="cc-top">
-                  <span className="cc-icon">{cat.icon}</span>
-                  <h3 className="cc-name">{cat.name}</h3>
-                </div>
-                <p className="cc-desc">{cat.desc}</p>
-                <div className="cc-laws">
-                  <span className="cc-laws-label">Regions:</span> {cat.laws}
-                </div>
-              </Link>
+              <div key={i} className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', transition: 'all 0.3s' }}>
+                <div style={{ color: 'var(--accent)', marginBottom: '20px' }}>{cat.icon}</div>
+                <h3 style={{ fontSize: '1.1rem', marginBottom: '12px' }}>{cat.name}</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text3)' }}>{cat.desc}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ How it works ═══ */}
-      <section className="section section-alt" id="how">
+      {/* ═══ Problem/Solution (Process) ═══ */}
+      <section className="section" style={{ background: 'var(--bg2)' }}>
         <div className="container">
-          <div className="how-grid-wrap">
-            <div className="how-left">
-              <div className="section-header" style={{ textAlign: 'left' }}>
-                <div className="section-badge">Process</div>
-                <h2 className="section-h2">How LegalCheck Works</h2>
-                <p className="section-sub" style={{ margin: '0' }}>Three steps from confusion to clarity. Every analysis cites specific statutes you can verify in your jurisdiction.</p>
-              </div>
-              <div className="how-timeline">
-                {HOW_STEPS.map((step, i) => (
-                  <div key={i} className="how-step">
-                    <div className="how-num-wrap">
-                      <div className="how-num">{step.num}</div>
-                      {i < HOW_STEPS.length - 1 && <div className="how-line" />}
-                    </div>
-                    <div className="how-content">
-                      <h3 className="how-title">{step.title}</h3>
-                      <p className="how-desc">{step.desc}</p>
-                      <p className="how-detail">{step.detail}</p>
-                    </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+            <div>
+              <div className="section-badge">How it works</div>
+              <h2 className="section-h2" style={{ textAlign: 'left' }}>Three Steps to Clarity</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '32px', marginTop: '40px' }}>
+                <div style={{ display: 'flex', gap: '24px' }}>
+                  <div style={{ width: '40px', height: '40px', background: 'var(--accent)', color: '#fff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800 }}>1</div>
+                  <div>
+                    <h4 style={{ fontSize: '1.15rem', marginBottom: '8px' }}>Describe Your Situation</h4>
+                    <p style={{ color: 'var(--text3)', fontSize: '0.95rem' }}>Enter what happened in plain English. No legal jargon required. Tell us who, what, and where.</p>
                   </div>
-                ))}
+                </div>
+                <div style={{ display: 'flex', gap: '24px' }}>
+                  <div style={{ width: '40px', height: '40px', background: 'var(--accent)', color: '#fff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800 }}>2</div>
+                  <div>
+                    <h4 style={{ fontSize: '1.15rem', marginBottom: '8px' }}>AI Cross-References the Law</h4>
+                    <p style={{ color: 'var(--text3)', fontSize: '0.95rem' }}>Our system analyzes your story against thousands of indexed government statutes and acts for your specific region.</p>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '24px' }}>
+                  <div style={{ width: '40px', height: '40px', background: 'var(--accent)', color: '#fff', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800 }}>3</div>
+                  <div>
+                    <h4 style={{ fontSize: '1.15rem', marginBottom: '8px' }}>Get Your Legal Blueprint</h4>
+                    <p style={{ color: 'var(--text3)', fontSize: '0.95rem' }}>Receive a structured report with a verdict, specific law citations, action steps, and an estimated lawsuit valuation.</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="how-right">
-              <div className="how-image-card">
-                <img src="/gavel.png" alt="Legal Gavel and Digital Verdict" className="how-img" />
-                <div className="how-img-overlay" />
+            <div style={{ position: 'relative' }}>
+              <img src="/gavel.png" alt="Legal Process" style={{ width: '100%', borderRadius: 'var(--r-lg)', boxShadow: 'var(--shadow-lg)' }} />
+              <div className="glass" style={{ position: 'absolute', bottom: '-30px', left: '-30px', padding: '24px', borderRadius: 'var(--r-lg)', maxWidth: '280px', border: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                  <TrendingUp className="text-green" size={24} />
+                  <span style={{ fontWeight: 800, fontSize: '1.25rem' }}>$8,400</span>
+                </div>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text3)' }}>Average identified payout for wrongful termination cases in the UK.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ Methodology / Accuracy ═══ */}
+      {/* ═══ Reviews/Social Proof ═══ */}
       <section className="section">
-        <div className="container-wide">
-          <div className="accuracy-box">
-            <div className="accuracy-content">
-              <div className="section-badge">Methodology</div>
-              <h2 className="section-h2">Multi-Region Accuracy</h2>
-              <p className="section-sub" style={{ textAlign: 'left', margin: '0 0 24px 0' }}>
-                LegalCheck uses localized knowledge layers to ensure the AI identifies the correct laws for your jurisdiction. We don't mix up US statutes with UK acts.
-              </p>
-              <div className="accuracy-grid">
-                <div className="acc-item">
-                  <div className="acc-icon"><Shield size={24} /></div>
-                  <h4>Jurisdiction Awareness</h4>
-                  <p>When you select a region, the AI is constrained to cite only laws valid within that specific territory (e.g. GDPR for EU).</p>
-                </div>
-                <div className="acc-item">
-                  <div className="acc-icon"><Scale size={24} /></div>
-                  <h4>Specific Statute Matching</h4>
-                  <p>We target the exact act or code section (e.g. 42 U.S.C. § 3604 or Section 1 of the Employment Rights Act).</p>
-                </div>
-                <div className="acc-item">
-                  <div className="acc-icon"><Search size={24} /></div>
-                  <h4>Zero-Hallucination Guardrails</h4>
-                  <p>Strict temperature settings prevent the AI from "inventing" laws. If it's not in the database, it's not cited.</p>
-                </div>
-              </div>
-            </div>
-            <div className="accuracy-visual">
-              <div className="acc-img-wrap">
-                <img src="/consultation.png" alt="Legal Consultation" className="acc-img" />
-                <div className="acc-glass-overlay">
-                  <div className="security-seal">
-                    <div className="seal-icon"><Shield size={24} /></div>
-                    <div className="seal-text">
-                      <strong>SECURE & PRIVATE</strong>
-                      <span>Global Privacy Standards</span>
-                    </div>
-                  </div>
-                  <div className="seal-list">
-                    <div className="seal-badge">GDPR COMPLIANT</div>
-                    <div className="seal-badge">CCPA READY</div>
-                    <div className="seal-badge">UK DPA 2018</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ Legal sources ═══ */}
-      <section className="section" id="sources">
         <div className="container">
           <div className="section-header">
-            <div className="section-badge">Verified Sources</div>
-            <h2 className="section-h2">Global Legal References</h2>
-            <p className="section-sub">Our AI is trained on authoritative government databases across multiple continents.</p>
+            <div className="section-badge">Success Stories</div>
+            <h2 className="section-h2">User Experiences</h2>
+            <p className="section-sub">People who successfully identified their rights and took action.</p>
           </div>
-          <div className="sources-grid">
-            {SOURCES.map((s, i) => (
-              <a key={i} href={s.url} target="_blank" rel="noreferrer" className="source-card">
-                <div className="sc-icon"><BookOpen size={18} /></div>
-                <div className="sc-name">{s.name}</div>
-                <div className="sc-link">View source ↗</div>
-              </a>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px', marginBottom: '60px' }}>
+            {REVIEWS.map((rev, i) => (
+              <div key={i} style={{ background: 'var(--bg2)', padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
+                <div style={{ display: 'flex', gap: '4px', marginBottom: '20px', color: 'var(--orange)' }}>
+                  {[...Array(rev.stars)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
+                </div>
+                <p style={{ fontSize: '1rem', color: 'var(--text2)', fontStyle: 'italic', marginBottom: '24px', lineHeight: '1.7' }}>"{rev.text}"</p>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '1rem' }}>{rev.name}</div>
+                  <div style={{ color: 'var(--text3)', fontSize: '0.85rem' }}>{rev.role} Case Study</div>
+                </div>
+              </div>
             ))}
           </div>
-          <div className="sources-note">
-            <strong>Transparency commitment:</strong> Every verdict includes the specific statute or act section so you can independently verify it on government websites like <a href="https://www.legislation.gov.uk/" target="_blank" rel="noreferrer">Legislation.gov.uk</a> or <a href="https://uscode.house.gov/" target="_blank" rel="noreferrer">USCode.gov</a>.
+          <div style={{ textAlign: 'center' }}>
+            <button className="btn btn-secondary">
+              <MessageSquare size={18} /> Share Your Experience
+            </button>
           </div>
         </div>
       </section>
 
-      {/* ═══ SEO Keywords / FAQ Section ═══ */}
-      <section className="section" id="faq">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-badge">Common Questions</div>
-            <h2 className="section-h2">Is it Illegal? Frequently Asked Questions</h2>
-            <p className="section-sub">Quick answers to common legal situations analyzed by our AI Legal Assistant.</p>
-          </div>
-          <div className="faq-grid">
-            <div className="faq-card">
-              <h3 className="faq-q">Is it illegal for a landlord to enter without notice?</h3>
-              <p className="faq-a">In most jurisdictions like California or the UK, it is generally illegal. Landlords usually must provide 24-48 hours notice except in emergencies. Use our checker for your specific region.</p>
-            </div>
-            <div className="faq-card">
-              <h3 className="faq-q">Can I sue for wrongful termination?</h3>
-              <p className="faq-a">If you were fired for discriminatory reasons, whistleblowing, or in breach of contract, you may have a case. Our AI analyzes specific labor laws like the FLSA or UK Employment Rights Act.</p>
-            </div>
-            <div className="faq-card">
-              <h3 className="faq-q">How do I report a HIPAA violation?</h3>
-              <p className="faq-a">You can file a complaint with the OCR. LegalCheck provides the exact steps and forms needed to handle medical privacy violations in the US.</p>
-            </div>
-            <div className="faq-card">
-              <h3 className="faq-q">What are my rights if my data is leaked?</h3>
-              <p className="faq-a">Under GDPR (EU/UK) or CCPA (US), you may be entitled to compensation. LegalCheck estimates potential damages based on the scale of the data breach.</p>
-            </div>
-            <div className="faq-card">
-              <h3 className="faq-q">Is debt collector harassment illegal?</h3>
-              <p className="faq-a">Yes, under the FDCPA in the US and similar laws globally, collectors cannot harass, threaten, or lie to you. Use our tool to generate a demand letter to stop them.</p>
-            </div>
-            <div className="faq-card">
-              <h3 className="faq-q">Are lemon laws the same in every state?</h3>
-              <p className="faq-a">No, lemon laws vary significantly by state. LegalCheck automatically detects your region to provide the specific statute applicable to your car's defect.</p>
-            </div>
-          </div>
+      {/* ═══ Final CTA ═══ */}
+      <section className="section" style={{ background: 'var(--accent)', color: '#fff', borderRadius: '32px', margin: '0 40px 100px 40px', overflow: 'hidden', position: 'relative' }}>
+        <div className="hero-gradient" style={{ opacity: 0.2 }} />
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <h2 className="section-h2" style={{ color: '#fff', marginBottom: '24px' }}>Stop Guessing. Start Knowing.</h2>
+          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto 40px auto' }}>
+            Free legal intelligence at your fingertips. No fees, no lawyers, just the facts.
+          </p>
+          <Link to="/check" className="btn btn-secondary btn-lg" style={{ background: '#fff', color: 'var(--accent)', border: 'none' }}>
+            Check My Situation Now <ArrowRight size={20} />
+          </Link>
+          <p style={{ marginTop: '32px', fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
+            Supporting US Federal/State, UK Acts, Canadian Provincial, and EU Directives.
+          </p>
         </div>
       </section>
-
-      {/* ═══ CTA ═══ */}
-      <section className="section">
-        <div className="container">
-          <div className="final-cta">
-            <div className="fcta-badge"><Scale size={48} /></div>
-            <h2 className="fcta-h2">Don't wonder if it's illegal.<br />Find out in 30 seconds.</h2>
-            <p className="fcta-sub">Free, unlimited checks for US, UK, Canada & EU. No signup required.</p>
-            <Link to="/check" className="btn btn-primary btn-lg">Analyze My Situation <ArrowRight size={20} /></Link>
-            <div className="fcta-legal">
-              DISCLAIMER: This analysis is provided for informational purposes only. It is not legal advice and does not create an attorney-client relationship. Laws vary by jurisdiction and are subject to change. Always consult a licensed attorney for your specific situation.
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }

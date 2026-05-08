@@ -1,122 +1,112 @@
-const SINGLE_LINK = import.meta.env.VITE_GUMROAD_SINGLE_LINK || 'https://sambitpathfinder.gumroad.com/l/xbqtvn';
-const YEARLY_LINK = import.meta.env.VITE_GUMROAD_LIFETIME_LINK || 'https://sambitpathfinder.gumroad.com/l/kussdz'; // Reusing the same env var but it's now Yearly
+import { useEffect } from 'react';
+import { CreditCard, Star, ArrowRight, ShieldCheck, Check, Zap, Crown } from 'lucide-react';
 
 const FREE_FEATURES = [
-  'Unlimited situation checks',
-  'Full verdict + law cited',
+  'Basic legal analysis',
+  'Statute citation',
   'Severity rating',
-  'Clear action steps',
-  'Lawyer recommendation'
+  'Action steps',
+  'US, UK, CA, EU support'
 ];
 
 const SINGLE_FEATURES = [
-  'Everything in Free',
-  'Case Strength Score (1-100)',
-  'Win Probability percentage',
-  'Similar Cases & Outcomes',
-  'Settlement value estimate',
-  'Evidence checklist',
-  'Step-by-step resolution plan'
+  'All Free features',
+  'Lawsuit Valuation Engine',
+  'Demand Letter Draft',
+  'Negotiation Playbook',
+  'Risk Matrix analysis'
 ];
 
 const YEARLY_FEATURES = [
-  'Everything above — unlimited',
-  'Ready-to-send Demand Letter drafts',
-  'Negotiation Playbook (5-step tactics)',
-  'Risk Matrix (4 scenario comparison)',
-  'Deadline Countdown with statute of limitations',
-  'Lawyer Cost Estimator',
-  'Common Mistakes to Avoid',
-  'New features added monthly',
-  '$24.99/year — less than $2.10/month'
+  'Unlimited premium reports',
+  'Priority support',
+  'Case history tracking',
+  'Early access features',
+  'Download as PDF'
 ];
 
-import { useEffect } from 'react';
-import { CreditCard, Star, ArrowRight, ShieldCheck, Check } from 'lucide-react';
+const SINGLE_LINK = import.meta.env.VITE_GUMROAD_SINGLE_LINK || 'https://sambitpathfinder.gumroad.com/l/xbqtvn';
+const YEARLY_LINK = import.meta.env.VITE_GUMROAD_LIFETIME_LINK || 'https://sambitpathfinder.gumroad.com/l/kussdz';
 
 export default function PricingPage() {
   useEffect(() => {
-    document.title = "Pricing & Premium Plans — LegalCheck AI";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Unlock 12-section premium legal intelligence reports, demand letters, settlement valuations, and negotiation playbooks. Affordable plans for every legal need.");
-    }
+    document.title = "Pricing — Professional Legal Intelligence";
+    window.scrollTo(0, 0);
   }, []);
+
   return (
-    <div className="pricing-page">
-      <div className="container" style={{ maxWidth: '1040px' }}>
-        <div className="pricing-header">
-          <div className="section-badge">Simple Pricing</div>
-          <h1 className="pricing-h1">Know your rights for free.<br />Unlock the full legal strategy with Premium.</h1>
-          <p className="pricing-sub">12-section intelligence reports · Demand letters · Settlement valuations · Negotiation playbooks</p>
+    <div className="pricing-page section">
+      <div className="container">
+        <div className="section-header">
+          <div className="section-badge">Pricing Plans</div>
+          <h1 className="section-h2">Transparent Legal Intelligence</h1>
+          <p className="section-sub">Choose the level of analysis you need. From free basic checks to comprehensive premium reports.</p>
         </div>
 
-        <div className="pricing-grid">
-          {/* Free */}
-          <div className="pricing-card">
-            <div className="pricing-tier">Free</div>
-            <div className="pricing-price">$0</div>
-            <div className="pricing-cycle">forever</div>
-            <ul className="pricing-features">
-              {FREE_FEATURES.map((f, i) => (
-                <li key={i}><Check size={14} className="feat-icon green" />{f}</li>
-              ))}
-            </ul>
-            <a href="/check" className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-              Start Checking Free
-            </a>
-          </div>
-
-          {/* Single */}
-          <div className="pricing-card">
-            <div className="pricing-tier">Single Unlock</div>
-            <div className="pricing-price">$2.99</div>
-            <div className="pricing-cycle">per unlock</div>
-            <ul className="pricing-features">
-              {SINGLE_FEATURES.map((f, i) => (
-                <li key={i}><Check size={14} className="feat-icon accent" />{f}</li>
-              ))}
-            </ul>
-            <a href={SINGLE_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-              Get Single Unlock <ArrowRight size={18} />
-            </a>
-            <p className="pricing-note">One-time. Instant access via Gumroad.</p>
-          </div>
-
-          {/* Yearly */}
-          <div className="pricing-card pricing-featured">
-            <div className="pricing-badge">BEST VALUE</div>
-            <div className="pricing-tier">Premium Membership</div>
-            <div className="pricing-price">$24.99</div>
-            <div className="pricing-cycle">per year</div>
-            <ul className="pricing-features">
-              {YEARLY_FEATURES.map((f, i) => (
-                <li key={i}><Check size={14} className="feat-icon green" />{f}</li>
-              ))}
-            </ul>
-            <a href={YEARLY_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-              Get Premium Yearly <ArrowRight size={18} />
-            </a>
-            <p className="pricing-note">Unlock everything. Best for professionals & active disputes.</p>
-          </div>
-        </div>
-
-        {/* FAQ */}
-        <div className="faq-section">
-          <h2 className="faq-title">FAQ</h2>
-          <div className="faq-grid">
-            {[
-              { q: 'Is this real legal advice?', a: 'No — but our Premium reports deliver the same depth of analysis you\'d get in a $500 attorney consultation: case strength scoring, win probability, settlement valuations, and a ready-to-send demand letter.' },
-              { q: 'What\'s in the Premium Report?', a: '12 sections: Case Strength Score, Win Probability, Similar Cases, Demand Letter Draft, Evidence Checklist, Negotiation Playbook, Risk Matrix, Deadline Countdown, Settlement Value, Lawyer Cost Estimator, Step-by-Step Resolution, and Common Mistakes to Avoid.' },
-              { q: 'Is my situation private?', a: 'Your situation is sent to our AI for analysis. We do not sell or share your data. See our Privacy policy.' },
-              { q: 'How do I get my license key?', a: 'After purchasing on Gumroad, you\'ll receive a license key by email immediately. Paste it on the result page to unlock.' }
-            ].map((item, i) => (
-              <div key={i} className="faq-card">
-                <h3 className="faq-q">{item.q}</h3>
-                <p className="faq-a">{item.a}</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px', maxWidth: '1100px', margin: '0 auto' }}>
+          
+          {/* Free Plan */}
+          <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ marginBottom: '32px' }}>
+              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '8px' }}>Basic</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$0</span>
+                <span style={{ color: 'var(--text3)' }}>/forever</span>
               </div>
-            ))}
+            </div>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px', flex: 1 }}>
+              {FREE_FEATURES.map((f, i) => (
+                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '0.9rem', color: 'var(--text2)' }}>
+                  <Check size={16} className="text-green" /> {f}
+                </li>
+              ))}
+            </ul>
+            <a href="/check" className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>Get Started</a>
           </div>
+
+          {/* Premium Plan */}
+          <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '2px solid var(--accent)', display: 'flex', flexDirection: 'column', position: 'relative', transform: 'scale(1.05)', background: 'var(--bg)' }}>
+            <div style={{ position: 'absolute', top: '-16px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#fff', padding: '4px 16px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 800 }}>MOST POPULAR</div>
+            <div style={{ marginBottom: '32px' }}>
+              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Zap size={20} className="text-accent" /> Premium
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$2.99</span>
+                <span style={{ color: 'var(--text3)' }}>/per report</span>
+              </div>
+            </div>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px', flex: 1 }}>
+              {SINGLE_FEATURES.map((f, i) => (
+                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '0.9rem', color: 'var(--text2)' }}>
+                  <Check size={16} className="text-accent" /> {f}
+                </li>
+              ))}
+            </ul>
+            <a href={SINGLE_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Unlock Now <ArrowRight size={18} /></a>
+          </div>
+
+          {/* Yearly Plan */}
+          <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ marginBottom: '32px' }}>
+              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Crown size={20} className="text-orange" /> Unlimited
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$24.99</span>
+                <span style={{ color: 'var(--text3)' }}>/year</span>
+              </div>
+            </div>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '40px', flex: 1 }}>
+              {YEARLY_FEATURES.map((f, i) => (
+                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '0.9rem', color: 'var(--text2)' }}>
+                  <Check size={16} className="text-green" /> {f}
+                </li>
+              ))}
+            </ul>
+            <a href={YEARLY_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Go Unlimited</a>
+          </div>
+
         </div>
       </div>
     </div>

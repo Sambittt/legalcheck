@@ -1,186 +1,154 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoadingAnimation from '../components/LoadingAnimation';
-import { getVerdict } from '../services/api';
-import { Globe, Shield, Zap, BookOpen, AlertTriangle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { 
+  Globe, 
+  ArrowRight, 
+  ShieldCheck, 
+  Info, 
+  AlertCircle,
+  HelpCircle,
+  Clock,
+  Briefcase,
+  Home,
+  Shield
+} from 'lucide-react';
+import LoadingAnimation from "../components/LoadingAnimation";
 
-const EXAMPLES = [
-  'My landlord entered my apartment without 24-hour notice and threatened to raise my rent when I complained.',
-  'My employer is making me work through lunch without pay and threatening to fire me if I report it.',
-  'A debt collector called me at 11pm and threatened to garnish my wages without a court order.'
-];
-
-const REGIONS = [
-  { id: 'USA', name: 'United States' },
-  { id: 'CAN', name: 'Canada' },
-  { id: 'UK', name: 'United Kingdom' },
-  { id: 'EU', name: 'Europe (EU)' }
+const JURISDICTIONS = [
+  { id: 'USA', name: 'United States', code: 'Federal & State Law' },
+  { id: 'UK', name: 'United Kingdom', code: 'Acts & Common Law' },
+  { id: 'Canada', name: 'Canada', code: 'Federal & Provincial' },
+  { id: 'Europe', name: 'European Union', code: 'Directives & Regulations' }
 ];
 
 export default function CheckPage() {
   const [situation, setSituation] = useState('');
   const [region, setRegion] = useState('USA');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   useEffect(() => {
-    document.title = "Analyze Your Situation — LegalCheck AI Assistant";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Describe your legal situation in plain English. Our AI analyzes US, UK, Canada, and EU statutes to give you a verdict and action steps instantly.");
-    }
+    document.title = "Start Legal Analysis | LegalCheck";
+    window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleCheck = (e) => {
     e.preventDefault();
-    if (!situation.trim() || situation.trim().length < 20) return;
-
-    setIsLoading(true);
-    setError('');
-
-    try {
-      const data = await getVerdict(situation, region);
-      navigate('/result', { state: { verdictData: data, situation, region } });
-    } catch (err) {
-      setIsLoading(false);
-      if (err.message === 'INVALID_FORMAT') {
-        setError('We had trouble analyzing this situation. Please rephrase and try again.');
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
-    }
+    if (!situation.trim()) return;
+    setLoading(true);
+    setTimeout(() => {
+      navigate('/result', { state: { situation, region } });
+    }, 4500);
   };
 
-  const useExample = (ex) => setSituation(ex);
-
-  if (isLoading) {
-    return (
-      <div className="page-center">
-        <LoadingAnimation />
-      </div>
-    );
-  }
+  if (loading) return <LoadingAnimation />;
 
   return (
-    <div className="check-page">
-      <div className="container-wide">
-        <div className="check-grid">
-          {/* Main Form */}
-          <div className="check-form-area fade-in-up">
-            <div className="section-badge" style={{ marginBottom: '16px' }}>Secure Analysis Portal</div>
-            <h1 className="check-h1">Describe what happened</h1>
-            <p className="check-sub">
-              Our AI will cross-reference your situation with {region === 'USA' ? 'federal and state' : 'national and regional'} law to identify potential violations.
-            </p>
+    <div className="check-page section">
+      <div className="container">
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '60px', alignItems: 'start' }}>
+          
+          <div className="fade-in-up">
+            <div className="section-header" style={{ textAlign: 'left', margin: '0 0 40px 0' }}>
+              <div className="section-badge">Legal Situation Portal</div>
+              <h1 className="section-h2" style={{ fontSize: '2.5rem' }}>Describe What Happened</h1>
+              <p className="section-sub">Be as detailed as possible. Include dates, specific parties, and any financial losses involved.</p>
+            </div>
 
-            <form onSubmit={handleSubmit}>
-              {/* Region Selector */}
-              <div className="region-selector">
-                <p className="region-label">Select Your Jurisdiction:</p>
-                <div className="region-grid">
-                  {REGIONS.map(r => (
-                    <button
-                      key={r.id}
-                      type="button"
-                      className={`region-btn ${region === r.id ? 'active' : ''}`}
-                      onClick={() => setRegion(r.id)}
+            <form onSubmit={handleCheck} className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
+              <div style={{ marginBottom: '32px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', fontWeight: 700, fontSize: '0.9rem' }}>
+                  <Globe size={18} className="text-accent" /> Select Your Jurisdiction
+                </label>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px' }}>
+                  {JURISDICTIONS.map(j => (
+                    <div 
+                      key={j.id}
+                      onClick={() => setRegion(j.id)}
+                      style={{
+                        padding: '16px',
+                        borderRadius: 'var(--r)',
+                        border: '2px solid',
+                        borderColor: region === j.id ? 'var(--accent)' : 'var(--border)',
+                        background: region === j.id ? 'var(--bg2)' : 'var(--bg)',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s'
+                      }}
                     >
-                      <Globe size={14} className="region-icon" />
-                      <span className="region-name">{r.name}</span>
-                    </button>
+                      <div style={{ fontWeight: 800, fontSize: '0.9rem', color: region === j.id ? 'var(--accent)' : 'var(--text)' }}>{j.name}</div>
+                      <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginTop: '4px' }}>{j.code}</div>
+                    </div>
                   ))}
                 </div>
               </div>
 
-              <div className="textarea-wrapper">
+              <div style={{ marginBottom: '32px' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', fontWeight: 700, fontSize: '0.9rem' }}>
+                  <Info size={18} className="text-accent" /> Your Situation
+                </label>
                 <textarea
+                  className="glass"
+                  placeholder="Example: My landlord in London kept my £2,000 deposit without providing an itemized list of damages within 10 days of my move-out date..."
                   value={situation}
-                  onChange={e => setSituation(e.target.value)}
-                  placeholder={`Example: My landlord in ${REGIONS.find(r => r.id === region).name} entered my apartment without notice...`}
-                  autoFocus
-                  rows={10}
+                  onChange={(e) => setSituation(e.target.value)}
+                  style={{
+                    width: '100%',
+                    height: '220px',
+                    padding: '24px',
+                    borderRadius: 'var(--r)',
+                    border: '1px solid var(--border)',
+                    fontSize: '1rem',
+                    color: 'var(--text)',
+                    resize: 'none',
+                    lineHeight: '1.6'
+                  }}
+                  required
                 />
-                <div className="char-count">{situation.length} chars</div>
               </div>
 
-              {error && <div className="error-banner">{error}</div>}
-
-              <button
-                type="submit"
-                className="btn btn-primary btn-lg"
-                style={{ width: '100%', justifyContent: 'center', marginTop: '20px' }}
-                disabled={situation.trim().length < 20}
-              >
-                Analyze Situation Now — Free
-              </button>
-
-              <div className="check-trust-footer">
-                <span className="trust-item"><Shield size={14} /> Encrypted</span>
-                <span className="trust-item"><Zap size={14} /> Instant Result</span>
-                <span className="trust-item"><BookOpen size={14} /> {region === 'USA' ? 'Statute' : 'Code'}-Backed</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text3)', fontSize: '0.8rem' }}>
+                  <Shield size={14} /> 256-bit Encryption Active
+                </div>
+                <button type="submit" className="btn btn-primary btn-lg">
+                  Analyze Situation <ArrowRight size={20} />
+                </button>
               </div>
             </form>
-
-            {/* Examples */}
-            <div className="examples-section">
-              <p className="examples-label">Or use an example:</p>
-              <div className="examples-list">
-                {EXAMPLES.map((ex, i) => (
-                  <button key={i} className="example-chip" onClick={() => useExample(ex)}>
-                    {ex}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Side Info */}
-          <div className="check-sidebar fade-in">
-            <div className="sidebar-card">
-              <h3>Verified Databases</h3>
-              <ul className="sidebar-list">
-                {region === 'USA' && (
-                  <>
-                    <li><span>U.S. Code (Federal Law)</span></li>
-                    <li><span>Code of Federal Regulations</span></li>
-                    <li><span>State Civil & Labor Codes</span></li>
-                  </>
-                )}
-                {region === 'CAN' && (
-                  <>
-                    <li><span>Criminal Code of Canada</span></li>
-                    <li><span>Provincial Employment Standards</span></li>
-                    <li><span>Residential Tenancies Acts</span></li>
-                  </>
-                )}
-                {region === 'UK' && (
-                  <>
-                    <li><span>UK Statutory Instruments</span></li>
-                    <li><span>Employment Rights Act 1996</span></li>
-                    <li><span>Consumer Rights Act 2015</span></li>
-                  </>
-                )}
-                {region === 'EU' && (
-                  <>
-                    <li><span>EU Charter of Fundamental Rights</span></li>
-                    <li><span>GDPR & Consumer Directives</span></li>
-                    <li><span>Member State National Codes</span></li>
-                  </>
-                )}
+          <aside style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <HelpCircle size={18} className="text-accent" /> Tips for accuracy
+              </h3>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.85rem', color: 'var(--text2)' }}>
+                <li style={{ display: 'flex', gap: '8px' }}><CheckCircle2 size={14} className="text-green" /> Mention specific dates (e.g. Jan 12th).</li>
+                <li style={{ display: 'flex', gap: '8px' }}><CheckCircle2 size={14} className="text-green" /> Include amounts (e.g. £1,200).</li>
+                <li style={{ display: 'flex', gap: '8px' }}><CheckCircle2 size={14} className="text-green" /> Name your role (e.g. Employee, Tenant).</li>
+                <li style={{ display: 'flex', gap: '8px' }}><CheckCircle2 size={14} className="text-green" /> State what you want to achieve.</li>
               </ul>
             </div>
 
-            <div className="sidebar-card alt">
-              <h3>Jurisdiction Awareness</h3>
-              <p>The AI is currently set to analyze under <strong>{REGIONS.find(r => r.id === region).name}</strong> law. Please ensure your description matches this region for accurate results.</p>
+            <div style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', background: 'var(--bg2)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                <Briefcase size={20} className="text-accent" />
+                <h3 style={{ fontSize: '1rem' }}>Premium Analysis</h3>
+              </div>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text3)', marginBottom: '20px' }}>Unlock the Lawsuit Valuation Engine to see how much your case could be worth in your jurisdiction.</p>
+              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--accent)' }}>UPGRADE AT THE END →</div>
             </div>
 
-            <div className="security-status">
-              <div className="status-dot green" />
-              <span>AI Analysis Engine: <strong>Online</strong></span>
+            <div style={{ padding: '24px', border: '1px solid var(--orange-border)', background: 'var(--orange-bg)', borderRadius: 'var(--r)', display: 'flex', gap: '12px' }}>
+              <AlertCircle size={20} className="text-orange" />
+              <div style={{ fontSize: '0.75rem', color: 'var(--text2)' }}>
+                <strong>Important:</strong> This tool provides information, not legal advice. Always consult a professional lawyer for court filings.
+              </div>
             </div>
-          </div>
+          </aside>
+
         </div>
       </div>
     </div>

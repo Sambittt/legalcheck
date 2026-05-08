@@ -1,70 +1,52 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { signInWithGoogle, signOutUser } from '../services/firebase';
-import { Scale } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { Scale, Moon, Sun, Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Navbar() {
-  const { user, userPlan, isAdmin } = useAuth();
+  const { user, isAdmin } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
-  const handleAuth = async () => {
-    if (user) {
-      await signOutUser();
-    } else {
-      await signInWithGoogle();
-    }
-    setMenuOpen(false);
-  };
-
-  const isPlanLifetime = userPlan?.plan === 'lifetime';
+  const isActive = (path) => location.pathname === path;
 
   return (
     <nav className="navbar">
-      <div className="container-wide navbar-inner">
+      <div className="container navbar-inner">
         <Link to="/" className="nav-logo">
-          <Scale size={20} className="logo-icon" />
-          LegalCheck
+          <Scale className="logo-icon" size={28} />
+          <span>LegalCheck</span>
         </Link>
 
         <div className="nav-links">
+          <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
+          <Link to="/articles" className={`nav-link ${isActive('/articles') ? 'active' : ''}`}>Case Studies</Link>
+          <Link to="/pricing" className={`nav-link ${isActive('/pricing') ? 'active' : ''}`}>Pricing</Link>
+          <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
+          <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
+          
+          <div style={{ width: '1px', height: '24px', background: 'var(--border)', margin: '0 8px' }} />
+
+          <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           {isAdmin && (
-            <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`} style={{ color: 'var(--accent-l)' }}>Admin</Link>
+            <Link to="/admin" className="btn btn-secondary btn-sm">Admin</Link>
           )}
-          <Link to="/check" className={`nav-link ${location.pathname === '/check' ? 'active' : ''}`}>Check</Link>
-          <Link to="/pricing" className={`nav-link ${location.pathname === '/pricing' ? 'active' : ''}`}>Pricing</Link>
-
-          {user ? (
-            <div className="nav-user">
-              {isAdmin ? (
-                <span className="plan-badge" style={{ background: 'var(--accent)', color: '#fff', border: 'none' }}>Admin</span>
-              ) : (
-                isPlanLifetime && <span className="plan-badge">Lifetime</span>
-              )}
-              <button className="btn btn-ghost btn-sm" onClick={handleAuth}>Sign Out</button>
-            </div>
-          ) : (
-            <button className="btn btn-secondary btn-sm" onClick={handleAuth}>Sign In</button>
-          )}
-
-          <Link to="/check" className="nav-cta btn btn-primary btn-sm">Check Free →</Link>
+          
+          <Link to="/check" className="btn btn-primary btn-sm">Start Analysis</Link>
         </div>
 
-        <button className="hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
-          <span /><span /><span />
-        </button>
-      </div>
-
-      {menuOpen && (
-        <div className="mobile-menu">
-          <Link to="/check" className="mobile-link" onClick={() => setMenuOpen(false)}>Check My Situation</Link>
-          <Link to="/pricing" className="mobile-link" onClick={() => setMenuOpen(false)}>Pricing</Link>
-          <button className="mobile-link" onClick={handleAuth}>
-            {user ? 'Sign Out' : 'Sign In with Google'}
+        {/* Mobile Toggle */}
+        <div style={{ display: 'none' }} className="mobile-only">
+          <button onClick={() => setMobileMenu(!mobileMenu)} className="btn btn-ghost">
+            {mobileMenu ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
