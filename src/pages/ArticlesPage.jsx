@@ -1,41 +1,33 @@
-import React from 'react';
-import { BookOpen, TrendingUp, ShieldCheck, ArrowRight, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, TrendingUp, ShieldCheck, ArrowRight, Clock, X } from 'lucide-react';
 
 const CASE_STUDIES = [
   {
     id: 1,
-    title: "How one tenant recovered a $5,200 security deposit",
+    title: "How Sarah J. Recovered a $5,200 Security Deposit",
     category: "Housing Law",
     readTime: "4 min",
-    excerpt: "A San Francisco tenant used LegalCheck to identify specific CA Civil Code violations that forced a corporate landlord to settle without a trial.",
+    summary: "A San Francisco tenant used LegalCheck to identify specific CA Civil Code violations that forced a corporate landlord to settle without a trial.",
     outcome: "$5,200 Recovered",
-    image: "/courtroom.png"
+    content: "Sarah was facing an illegal deduction from her security deposit for 'painting' and 'cleaning' that should have been wear and tear. Our AI identified CA Civil Code § 1950.5 violations. She sent a formal demand citing the code, and the landlord returned the full amount within 48 hours to avoid the mandatory treble damages (3x penalty) she was entitled to under state law."
   },
   {
     id: 2,
-    title: "Stopping a wrongful dismissal in London",
+    title: "Stopping a Wrongful Dismissal in London",
     category: "Employment",
     readTime: "6 min",
-    excerpt: "After being fired without notice, an IT consultant cited the UK Employment Rights Act 1996 indexed by LegalCheck to win a 6-month severance package.",
+    summary: "After being fired without notice, an IT consultant cited the UK Employment Rights Act 1996 to win a 6-month severance package.",
     outcome: "6-Month Severance",
-    image: "/consultation.png"
+    content: "Marcus was terminated after flagging security vulnerabilities in his company's software. LegalCheck identified this as 'Whistleblowing' protected under the Public Interest Disclosure Act (PIDA). By using the specific legal language provided by our tool, Marcus successfully negotiated a comprehensive severance package that covered 6 months of pay, far exceeding the initial 'no-notice' termination offer."
   },
   {
     id: 3,
-    title: "Fighting medical billing fraud in Texas",
+    title: "Fighting Medical Billing Fraud in Texas",
     category: "Healthcare",
     readTime: "5 min",
-    excerpt: "A surprise $12,000 hospital bill was reduced to zero after identifying HIPAA and No Surprises Act violations using our AI analysis engine.",
+    summary: "A surprise $12,000 hospital bill was reduced to zero after identifying HIPAA and No Surprises Act violations.",
     outcome: "$12,000 Saved",
-    image: "/gavel.png"
-  },
-  {
-    id: 4,
-    title: "Combatting Illegal 'Lemon Law' Sales for a Used Vehicle",
-    category: "Consumer",
-    summary: "David bought a used truck that broke down 3 days later. The dealer claimed 'As-Is', but state law said otherwise.",
-    outcome: "Full Refund ($8,400)",
-    content: "Even though the contract said 'As-Is', David's state has a mandatory 30-day warranty for vehicles over a certain price point. LegalCheck cited the exact consumer protection act. David showed this to the dealer, who immediately offered a full refund rather than face a state audit."
+    content: "Elena received an 'out-of-network' bill for emergency anesthesia services. LegalCheck flagged this as a direct violation of the federal No Surprises Act which prohibits balance billing for emergency care. Armed with the specific act section, Elena disputed the charges with the hospital's billing department. After three days of review, the hospital admitted the error and canceled the entire $12,000 balance."
   }
 ];
 
@@ -47,55 +39,53 @@ export default function ArticlesPage() {
       <section className="section" style={{ background: 'var(--bg2)', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header">
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={12} /> {caseStudy.readTime}</span>
-                    <span>•</span>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><TrendingUp size={12} /> {caseStudy.outcome}</span>
-                  </div>
-                  <h3 style={{ fontSize: '1.25rem', marginBottom: '16px', lineHeight: '1.4' }}>{caseStudy.title}</h3>
-                  <p style={{ color: 'var(--text2)', fontSize: '0.9rem', marginBottom: '24px', flex: 1 }}>{caseStudy.excerpt}</p>
-                  <a href={`/articles/${caseStudy.id}`} className="btn btn-secondary btn-sm" style={{ alignSelf: 'flex-start' }}>
-                    Read Case Study <ArrowRight size={14} />
-                  </a>
+            <div className="section-badge">Success Stories</div>
+            <h1 className="section-h2">Real Results. Real Impact.</h1>
+            <p className="section-sub">Read how everyday people are using AI to defend their rights and recover money that belongs to them.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+            {CASE_STUDIES.map((study) => (
+              <div key={study.id} className="glass card" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--accent)', background: 'var(--bg3)', padding: '4px 12px', borderRadius: '100px' }}>{study.category}</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--green)' }}>{study.outcome}</span>
                 </div>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', lineHeight: '1.3' }}>{study.title}</h3>
+                <p style={{ color: 'var(--text3)', fontSize: '0.95rem', marginBottom: '24px', flex: 1 }}>{study.summary}</p>
+                <button 
+                  onClick={() => setSelected(study)}
+                  className="btn btn-secondary btn-sm" 
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  Read Full Story <ArrowRight size={14} />
+                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ background: 'var(--bg2)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
-            <div>
-              <div className="section-badge">Methodology</div>
-              <h2 className="section-h2" style={{ textAlign: 'left', fontSize: '2rem' }}>How we conduct our research</h2>
-              <p style={{ color: 'var(--text2)', marginBottom: '24px' }}>
-                Our research team analyzes thousands of public case records and settlement reports to identify winning patterns. We focus on disputes that are often too small for big law firms but critical for individuals.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <li style={{ display: 'flex', gap: '12px' }}>
-                  <ShieldCheck className="text-green" size={20} />
-                  <span style={{ fontSize: '0.95rem' }}>Verified statutory citations for every case.</span>
-                </li>
-                <li style={{ display: 'flex', gap: '12px' }}>
-                  <ShieldCheck className="text-green" size={20} />
-                  <span style={{ fontSize: '0.95rem' }}>Analysis of settlement vs. trial outcomes.</span>
-                </li>
-                <li style={{ display: 'flex', gap: '12px' }}>
-                  <ShieldCheck className="text-green" size={20} />
-                  <span style={{ fontSize: '0.95rem' }}>Real-world negotiation playbooks derived from successful cases.</span>
-                </li>
-              </ul>
+      {/* Modal for Full Story */}
+      {selected && (
+        <div className="modal-overlay" onClick={() => setSelected(null)}>
+          <div className="modal" style={{ maxWidth: '700px' }} onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelected(null)}><X size={20} /></button>
+            <div className="section-badge">{selected.category} Case Study</div>
+            <h2 style={{ fontSize: '2.25rem', marginBottom: '24px', fontWeight: 800 }}>{selected.title}</h2>
+            <div style={{ background: 'var(--green-bg)', color: 'var(--green)', padding: '16px 24px', borderRadius: 'var(--r)', fontWeight: 800, marginBottom: '32px', display: 'inline-block' }}>
+              Final Outcome: {selected.outcome}
             </div>
-            <div style={{ background: 'var(--bg)', padding: '48px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center' }}>
-              <BookOpen className="text-accent" size={48} style={{ marginBottom: '24px' }} />
-              <h3 style={{ marginBottom: '16px' }}>Submit Your Story</h3>
-              <p style={{ color: 'var(--text3)', marginBottom: '32px' }}>Did LegalCheck help you win a case or save money? Share your experience with our community.</p>
-              <button className="btn btn-primary">Share My Experience</button>
+            <div style={{ color: 'var(--text2)', lineHeight: '1.8', fontSize: '1.1rem' }}>
+              {selected.content}
+            </div>
+            <div style={{ marginTop: '40px', padding: '32px', background: 'var(--bg2)', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)' }}>
+              <h4 style={{ marginBottom: '12px', fontSize: '1.1rem' }}>How LegalCheck Helped:</h4>
+              <p style={{ fontSize: '0.95rem', color: 'var(--text3)', lineHeight: '1.6' }}>By identifying the specific statute and providing the exact legal language for the dispute, we gave the user the authority needed to force a settlement without expensive litigation.</p>
             </div>
           </div>
         </div>
-      </section>
+      )}
     </div>
   );
 }

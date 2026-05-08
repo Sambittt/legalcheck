@@ -11,7 +11,8 @@ import {
   Clock,
   Briefcase,
   Home,
-  Shield
+  Shield,
+  CheckCircle2
 } from 'lucide-react';
 import LoadingAnimation from "../components/LoadingAnimation";
 
