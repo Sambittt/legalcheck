@@ -73,25 +73,40 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ═══ Stats/Trust Bar ═══ */}
-      <section style={{ padding: '60px 0', borderY: '1px solid var(--border)', background: 'var(--bg2)' }}>
+      {/* ═══ Stats/Trust Section ═══ */}
+      <section style={{ padding: '80px 0', background: 'var(--bg2)', borderY: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '40px' }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 800 }}>300k+</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>Situations Analyzed</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
+                <Globe size={20} className="text-accent" />
+              </div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>4</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Global Regions</div>
             </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 800 }}>$15M+</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>In Potential Payouts Identified</div>
+
+            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
+                <TrendingUp size={20} className="text-green" />
+              </div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--green), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>$15M+</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Payouts Identified</div>
             </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 800 }}>4.9/5</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>User Satisfaction Rate</div>
+
+            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
+                <Users size={20} className="text-accent" />
+              </div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>300k+</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Cases Analyzed</div>
             </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2rem', fontWeight: 800 }}>98%</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 600 }}>Statute Accuracy</div>
+
+            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
+              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
+                <CheckCircle2 size={20} className="text-accent" />
+              </div>
+              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>98%</div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Statute Accuracy</div>
             </div>
           </div>
         </div>
