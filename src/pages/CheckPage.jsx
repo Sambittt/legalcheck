@@ -17,10 +17,14 @@ import {
 import LoadingAnimation from "../components/LoadingAnimation";
 
 const JURISDICTIONS = [
-  { id: 'USA', name: 'United States', code: 'Federal & State Law' },
-  { id: 'UK', name: 'United Kingdom', code: 'Acts & Common Law' },
-  { id: 'Canada', name: 'Canada', code: 'Federal & Provincial' },
-  { id: 'Europe', name: 'European Union', code: 'Directives & Regulations' }
+  { id: 'USA', name: 'United States', code: 'Federal & State', flag: '🇺🇸' },
+  { id: 'UK', name: 'United Kingdom', code: 'Acts & Common Law', flag: '🇬🇧' },
+  { id: 'Canada', name: 'Canada', code: 'Federal & Provincial', flag: '🇨🇦' },
+  { id: 'Australia', name: 'Australia', code: 'Commonwealth Law', flag: '🇦🇺' },
+  { id: 'Europe', name: 'European Union', code: 'EU Directives', flag: '🇪🇺' },
+  { id: 'Singapore', name: 'Singapore', code: 'Statutes & Penal Code', flag: '🇸🇬' },
+  { id: 'India', name: 'India', code: 'BNS & Civil Code', flag: '🇮🇳' },
+  { id: 'UAE', name: 'United Arab Emirates', code: 'Federal Decree Laws', flag: '🇦🇪' }
 ];
 
 export default function CheckPage() {
@@ -75,11 +79,17 @@ export default function CheckPage() {
                         borderColor: region === j.id ? 'var(--accent)' : 'var(--border)',
                         background: region === j.id ? 'var(--bg2)' : 'var(--bg)',
                         cursor: 'pointer',
-                        transition: 'all 0.2s'
+                        transition: 'all 0.2s',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px'
                       }}
                     >
-                      <div style={{ fontWeight: 800, fontSize: '0.9rem', color: region === j.id ? 'var(--accent)' : 'var(--text)' }}>{j.name}</div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginTop: '4px' }}>{j.code}</div>
+                      <span style={{ fontSize: '1.5rem' }}>{j.flag}</span>
+                      <div>
+                        <div style={{ fontWeight: 800, fontSize: '0.9rem', color: region === j.id ? 'var(--accent)' : 'var(--text)' }}>{j.name}</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginTop: '4px' }}>{j.code}</div>
+                      </div>
                     </div>
                   ))}
                 </div>

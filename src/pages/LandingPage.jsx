@@ -61,8 +61,8 @@ export default function LandingPage() {
                 <Scale size={14} /> Global AI Legal Standard
               </div>
               <h1 className="hero-h1" style={{ fontSize: '5.5rem', marginBottom: '32px' }}>
-                LEGALLY PROTECTED <br />
-                <span className="hero-accent" style={{ background: 'linear-gradient(90deg, var(--accent), #60a5fa)', WebkitBackgroundClip: 'text', color: 'transparent' }}>v1.2.4 EMERALD.</span>
+                Legal Intelligence <br />
+                <span className="hero-accent">Redefined.</span>
               </h1>
               <p className="hero-sub" style={{ fontSize: '1.4rem', lineHeight: '1.6', marginBottom: '48px', color: 'var(--text2)' }}>
                 The world's most advanced AI engine for immediate statutory analysis. Get a clear verdict and settlement valuation in under 30 seconds.

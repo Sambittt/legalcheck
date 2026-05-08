@@ -3,7 +3,7 @@
 :root {
   --font: 'Outfit', 'Inter', system-ui, sans-serif;
   
-  /* Luxury Emerald & Slate Palette */
+  /* Royal Indigo & Midnight Palette */
   --bg: #ffffff;
   --bg2: #f8fafc;
   --bg3: #f1f5f9;
@@ -13,9 +13,9 @@
   --text3: #64748b;
   --border: #e2e8f0;
   
-  --accent: #059669; /* Emerald 600 */
-  --accent-l: #10b981; /* Emerald 500 */
-  --accent-rgb: 5, 150, 105;
+  --accent: #4338ca; /* Indigo 700 */
+  --accent-l: #4f46e5; /* Indigo 600 */
+  --accent-rgb: 67, 56, 202;
   
   --green: #10b981;
   --green-bg: #ecfdf5;
@@ -40,17 +40,17 @@
 
 [data-theme='dark'] {
   --bg: #020617;
-  --bg2: #0f172a;
+  --bg2: #0a0f29;
   --bg3: #1e293b;
-  --card: #0f172a;
+  --card: #0a0f29;
   --text: #f8fafc;
   --text2: #cbd5e1;
   --text3: #94a3b8;
   --border: #1e293b;
   
-  --accent: #10b981; /* Emerald 500 */
-  --accent-l: #34d399; /* Emerald 400 */
-  --accent-rgb: 16, 185, 129;
+  --accent: #6366f1; /* Indigo 500 */
+  --accent-l: #818cf8; /* Indigo 400 */
+  --accent-rgb: 99, 102, 241;
   
   --green: #22c55e;
   --green-bg: rgba(34, 197, 94, 0.1);
@@ -64,7 +64,7 @@
   --orange-bg: rgba(251, 191, 36, 0.1);
   --orange-border: rgba(251, 191, 36, 0.2);
   
-  --glass: rgba(15, 23, 42, 0.8);
+  --glass: rgba(10, 15, 41, 0.8);
   --glass-border: rgba(255, 255, 255, 0.05);
 }
 
