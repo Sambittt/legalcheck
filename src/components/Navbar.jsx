@@ -1,5 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { Scale, Moon, Sun, Menu, X, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -11,22 +10,25 @@ export default function Navbar() {
 
   const isActive = (path) => location.pathname === path;
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change or handle scroll lock
   useEffect(() => {
-    setMobileMenu(false);
     if (mobileMenu) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
     return () => { document.body.style.overflow = 'unset'; };
-  }, [location.pathname, mobileMenu]);
+  }, [mobileMenu]);
+
+  useEffect(() => {
+    setMobileMenu(false);
+  }, [location.pathname]);
 
   return (
     <nav className="navbar">
       <div className="container navbar-inner">
-        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ zIndex: 2100 }}>
-          <Scale className="logo-icon" size={28} />
+        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ zIndex: 3000 }}>
+          <Scale className="logo-icon" size={24} />
           <span>LegalCheck</span>
         </Link>
 
@@ -47,12 +49,17 @@ export default function Navbar() {
           <Link to="/check" className="btn btn-primary btn-sm">Start Analysis</Link>
         </div>
 
-        {/* Mobile Toggle Container - Always on top */}
-        <div className="mobile-only" style={{ display: 'none', gap: '8px', alignItems: 'center', zIndex: 2100 }}>
+        {/* Mobile Toggle Container */}
+        <div className="mobile-only" style={{ gap: '8px', alignItems: 'center', zIndex: 3000 }}>
           <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <button onClick={() => setMobileMenu(!mobileMenu)} className="btn btn-ghost" style={{ padding: '8px' }}>
+          <button 
+            onClick={() => setMobileMenu(!mobileMenu)} 
+            className="btn btn-ghost" 
+            style={{ padding: '8px', cursor: 'pointer' }}
+            aria-label="Toggle Menu"
+          >
             {mobileMenu ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -68,7 +75,7 @@ export default function Navbar() {
             <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
             <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
             
-            <Link to="/check" className="btn btn-primary" style={{ marginTop: '32px', width: '100%', justifyContent: 'center' }}>
+            <Link to="/check" className="btn btn-primary" style={{ marginTop: '24px', width: '100%', justifyContent: 'center' }}>
               Start Free Analysis <ArrowRight size={18} />
             </Link>
           </div>

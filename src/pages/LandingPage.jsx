@@ -78,24 +78,24 @@ export default function LandingPage() {
             </div>
 
             {/* Analysis Card - Hidden on small mobile to save space, or scaled */}
-            <div className="hero-card-container fade-in" style={{ display: 'flex', justifyContent: 'center' }}>
-              <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--glass-border)', width: '100%', maxWidth: '400px', boxShadow: 'var(--shadow-lg)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                  <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.6 }}>Current Analysis</span>
-                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite' }} />
+            <div className="hero-card-container fade-in" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <div className="glass" style={{ padding: '24px', borderRadius: 'var(--r-lg)', border: '1px solid var(--glass-border)', width: '100%', maxWidth: '340px', boxShadow: 'var(--shadow-lg)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.6 }}>Current Analysis</span>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite' }} />
                 </div>
-                <h4 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Wrongful Termination Case</h4>
-                <div style={{ width: '100%', height: '4px', background: 'var(--bg3)', borderRadius: '2px', marginBottom: '24px', overflow: 'hidden' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '6px' }}>Wrongful Termination Case</h4>
+                <div style={{ width: '100%', height: '3px', background: 'var(--bg3)', borderRadius: '2px', marginBottom: '16px', overflow: 'hidden' }}>
                   <div style={{ width: '85%', height: '100%', background: 'var(--accent)', borderRadius: '2px' }} />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
-                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>Est. Payout</div>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--accent)' }}>$8,500</div>
+                    <div style={{ fontSize: '0.6rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '2px' }}>Est. Payout</div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--accent)' }}>$8,500</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>Verdict</div>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--green)' }}>Likely Illegal</div>
+                    <div style={{ fontSize: '0.6rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '2px' }}>Verdict</div>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--green)' }}>Likely Illegal</div>
                   </div>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function LandingPage() {
             <h2 className="section-h2">What Can We Check?</h2>
             <p className="section-sub">From housing disputes to employment law, our AI covers the most critical legal situations you face daily.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+          <div className="grid-3" style={{ gap: '24px' }}>
             {CATEGORIES.map((cat, i) => (
               <div key={i} className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', transition: 'all 0.3s' }}>
                 <div style={{ color: 'var(--accent)', marginBottom: '20px' }}>{cat.icon}</div>
