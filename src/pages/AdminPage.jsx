@@ -13,11 +13,10 @@ export default function AdminPage() {
     async function fetchStats() {
       if (!isAdmin) return;
       try {
-        const q = query(collection(db, 'checks'), orderBy('timestamp', 'desc'), limit(10));
+        const q = query(collection(db, 'checks'), orderBy('createdAt', 'desc'), limit(10));
         const snap = await getDocs(q);
         const recent = snap.docs.map(d => ({ id: d.id, ...d.data() }));
         
-        // Count total docs without fetching all if possible, but for now we'll just show recent
         setStats({ totalChecks: snap.size, recent });
       } catch (err) {
         console.error('Error fetching admin stats:', err);
