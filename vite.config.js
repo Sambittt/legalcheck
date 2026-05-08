@@ -6,10 +6,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'lucide': ['lucide-react'],
-          'firebase': ['firebase/app', 'firebase/firestore', 'firebase/auth']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'react-vendor';
+            if (id.includes('lucide')) return 'lucide';
+            if (id.includes('firebase')) return 'firebase';
+            return 'vendor';
+          }
         }
       }
     },
