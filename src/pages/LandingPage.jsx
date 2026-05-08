@@ -19,7 +19,9 @@ import {
   Scale,
   MessageSquare,
   TrendingUp,
-  Star
+  Star,
+  Globe,
+  Users
 } from 'lucide-react';
 
 const CATEGORIES = [
