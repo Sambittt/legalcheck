@@ -82,12 +82,15 @@ export default async function handler(req, context) {
   const groq = new Groq({ apiKey: process.env.VITE_GROQ_API_KEY });
 
   const callGroq = async (userContent) => {
+    const systemContent = type === 'check' 
+      ? SYSTEM_PROMPT 
+      : 'You are LegalCheck Premium, an elite AI legal strategist. You provide the most thorough, specific, and actionable legal intelligence available. Every response must feel like a $500/hr attorney consultation. Never be vague. Always cite specific laws, real precedent patterns, and real dollar figures.';
     const completion = await groq.chat.completions.create({
       model: 'llama-3.3-70b-versatile',
       temperature: 0.2,
-      max_tokens: 1024,
+      max_tokens: type === 'check' ? 1024 : 4096,
       messages: [
-        { role: 'system', content: type === 'check' ? SYSTEM_PROMPT : 'You are LegalCheck, a legal assistant.' },
+        { role: 'system', content: systemContent },
         { role: 'user', content: userContent }
       ]
     });

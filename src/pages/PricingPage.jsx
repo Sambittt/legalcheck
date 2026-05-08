@@ -11,19 +11,24 @@ const FREE_FEATURES = [
 
 const SINGLE_FEATURES = [
   'Everything in Free',
-  'Legal alternative for one situation',
-  'Step-by-step legal method',
-  'Cost & timeline estimates',
-  'Potential compensation summary'
+  'Case Strength Score (1-100)',
+  'Win Probability percentage',
+  'Similar Cases & Outcomes',
+  'Settlement value estimate',
+  'Evidence checklist',
+  'Step-by-step resolution plan'
 ];
 
 const YEARLY_FEATURES = [
-  'Everything above',
-  'Unlimited legal alternative unlocks',
-  'Lawsuit Valuation Engine',
-  'Potential damages & payout estimates',
-  'Priority feature access',
-  'Yearly subscription'
+  'Everything above — unlimited',
+  'Ready-to-send Demand Letter drafts',
+  'Negotiation Playbook (5-step tactics)',
+  'Risk Matrix (4 scenario comparison)',
+  'Deadline Countdown with statute of limitations',
+  'Lawyer Cost Estimator',
+  'Common Mistakes to Avoid',
+  'New features added monthly',
+  '$24.99/year — less than $2.10/month'
 ];
 
 export default function PricingPage() {
@@ -32,8 +37,8 @@ export default function PricingPage() {
       <div className="container" style={{ maxWidth: '1040px' }}>
         <div className="pricing-header">
           <div className="section-badge">💰 Simple Pricing</div>
-          <h1 className="pricing-h1">Know your rights for free.<br />Unlock the winnings with Premium.</h1>
-          <p className="pricing-sub">Get the full legal blueprint and estimated settlement values.</p>
+          <h1 className="pricing-h1">Know your rights for free.<br />Unlock the full legal strategy with Premium.</h1>
+          <p className="pricing-sub">12-section intelligence reports · Demand letters · Settlement valuations · Negotiation playbooks</p>
         </div>
 
         <div className="pricing-grid">
@@ -91,8 +96,8 @@ export default function PricingPage() {
           <h2 className="faq-title">FAQ</h2>
           <div className="faq-grid">
             {[
-              { q: 'Is this real legal advice?', a: 'No — but it\'s the next best thing. It gives you the exact law that applies and clear steps, the same info you\'d get in a $300 consultation.' },
-              { q: 'How does the Lawsuit valuation work?', a: 'Our AI analyzes case law precedents and statutory damages (like trebled damages in consumer fraud or FDCPA fixed penalties) to estimate what your case could be worth.' },
+              { q: 'Is this real legal advice?', a: 'No — but our Premium reports deliver the same depth of analysis you\'d get in a $500 attorney consultation: case strength scoring, win probability, settlement valuations, and a ready-to-send demand letter.' },
+              { q: 'What\'s in the Premium Report?', a: '12 sections: Case Strength Score, Win Probability, Similar Cases, Demand Letter Draft, Evidence Checklist, Negotiation Playbook, Risk Matrix, Deadline Countdown, Settlement Value, Lawyer Cost Estimator, Step-by-Step Resolution, and Common Mistakes to Avoid.' },
               { q: 'Is my situation private?', a: 'Your situation is sent to our AI for analysis. We do not sell or share your data. See our Privacy policy.' },
               { q: 'How do I get my license key?', a: 'After purchasing on Gumroad, you\'ll receive a license key by email immediately. Paste it on the result page to unlock.' }
             ].map((item, i) => (

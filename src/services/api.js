@@ -51,7 +51,7 @@ async function callGroqDirect(userContent, systemOverride) {
     body: JSON.stringify({
       model: 'llama-3.3-70b-versatile',
       temperature: 0.2,
-      max_tokens: 1024,
+      max_tokens: 4096,
       messages: [
         { role: 'system', content: systemOverride || SYSTEM_PROMPT },
         { role: 'user', content: userContent }
@@ -112,13 +112,18 @@ export function parseVerdictText(text) {
 
 export function parseAlternativeText(text) {
   return {
-    theWay: extract(text, "THE LEGAL WAY TO DO THIS:", "WHAT YOU'LL NEED"),
-    whatYouNeed: extract(text, "WHAT YOU'LL NEED:", "HOW LONG IT TAKES"),
-    howLong: extract(text, "HOW LONG IT TAKES:", "WHAT IT MIGHT COST"),
-    cost: extract(text, "WHAT IT MIGHT COST:", "WATCH OUT FOR"),
-    watchOut: extract(text, "WATCH OUT FOR:", "HOW YOU CAN BENEFIT"),
-    potentialBenefit: extract(text, "HOW YOU CAN BENEFIT:", "ESTIMATED LAWSUIT WINNINGS"),
-    lawsuitWinnings: extract(text, "ESTIMATED LAWSUIT WINNINGS:")
+    caseStrength: extract(text, "CASE STRENGTH SCORE:", "WIN PROBABILITY"),
+    winProbability: extract(text, "WIN PROBABILITY:", "SIMILAR CASES"),
+    similarCases: extract(text, "SIMILAR CASES & OUTCOMES:", "DEMAND LETTER DRAFT"),
+    demandLetter: extract(text, "DEMAND LETTER DRAFT:", "EVIDENCE CHECKLIST"),
+    evidenceChecklist: extract(text, "EVIDENCE CHECKLIST:", "NEGOTIATION PLAYBOOK"),
+    negotiationPlaybook: extract(text, "NEGOTIATION PLAYBOOK:", "RISK MATRIX"),
+    riskMatrix: extract(text, "RISK MATRIX:", "DEADLINE COUNTDOWN"),
+    deadlines: extract(text, "DEADLINE COUNTDOWN:", "ESTIMATED SETTLEMENT VALUE"),
+    settlementValue: extract(text, "ESTIMATED SETTLEMENT VALUE:", "LAWYER COST ESTIMATOR"),
+    lawyerCost: extract(text, "LAWYER COST ESTIMATOR:", "STEP-BY-STEP LEGAL RESOLUTION"),
+    theWay: extract(text, "STEP-BY-STEP LEGAL RESOLUTION:", "COMMON MISTAKES TO AVOID"),
+    watchOut: extract(text, "COMMON MISTAKES TO AVOID:")
   };
 }
 
@@ -160,35 +165,61 @@ export async function getLegalAlternative(situation, verdict, region = 'USA') {
 The user's situation was: ${situation}
 Your previous verdict was: ${verdict}
 
-Now give them the legal way to accomplish their goal under ${region} law.
+You are now generating the PREMIUM LEGAL INTELLIGENCE REPORT. This is a paid product. Be extremely thorough, specific, and actionable. Use real statutes, real precedent names, and real dollar figures. Do NOT be vague. Every section must feel like it was written by a $500/hr attorney.
 
-Respond in this exact format:
+Respond in this EXACT format (use every section header exactly as shown):
 
-🔓 THE LEGAL WAY TO DO THIS:
-[Clear step by step explanation]
+📊 CASE STRENGTH SCORE:
+Rate the strength of the user's legal position on a scale of 1-100. Format: "[SCORE]/100 — [RATING]" where RATING is Weak (1-30), Moderate (31-60), Strong (61-80), or Very Strong (81-100). Then explain in 2-3 sentences WHY this score, referencing specific legal factors. List 3 STRENGTHS and 3 WEAKNESSES of their position as bullet points.
 
-📝 WHAT YOU'LL NEED:
-[Documents or processes required]
+📈 WIN PROBABILITY:
+Give a specific percentage (e.g., "72%") for how likely they would win if this went to court or a formal complaint in ${region}. Then explain: what factors increase their chances and what factors decrease them. Reference jurisdiction-specific precedent patterns.
 
-⏱️ HOW LONG IT TAKES:
-[Realistic timeline]
+📁 SIMILAR CASES & OUTCOMES:
+Describe 2-3 real-world cases or typical case patterns in ${region} that are similar to this situation. For EACH case, provide: the case name or description, what happened, and the outcome (especially any monetary award). Use this format:
+• Case 1: [Name/Description] — Outcome: [result and amount]
+• Case 2: [Name/Description] — Outcome: [result and amount]
 
-💰 WHAT IT MIGHT COST:
-[Free / filing fees / estimated cost]
+📝 DEMAND LETTER DRAFT:
+Write a professional, ready-to-send demand letter template for this specific situation. Include: the legal basis, what the user is demanding, a deadline, and consequences of non-compliance. Make it sound like a real attorney wrote it. Use formal legal language. The user should be able to copy-paste this and send it.
 
-⚠️ WATCH OUT FOR:
-[Common mistakes people make]
+📋 EVIDENCE CHECKLIST:
+List 8-12 specific pieces of evidence the user should collect RIGHT NOW to strengthen their case. Be very specific (e.g., "Screenshot of text message from [date]" not just "messages"). Prioritize them with [CRITICAL], [IMPORTANT], or [HELPFUL] tags.
 
-🎁 HOW YOU CAN BENEFIT:
-[Explain the benefits of following the legal path or resolving the situation correctly]
+🎯 NEGOTIATION PLAYBOOK:
+Provide 5 specific negotiation tactics for this situation:
+1. Opening move — what to say/do first
+2. Leverage points — what gives them power
+3. Walk-away number — minimum acceptable outcome
+4. Escalation strategy — if negotiation fails
+5. Settlement sweet spot — the most likely agreeable range
 
-💵 ESTIMATED LAWSUIT WINNINGS:
-[Provide a realistic estimate of potential damages, settlements, or compensation based on statutes and precedents in ${region}. Use currency symbols relevant to ${region}.]`;
+⚖️ RISK MATRIX:
+Create a clear comparison:
+• IF YOU DO NOTHING: [specific consequences with timeline]
+• IF YOU SEND A DEMAND LETTER: [likely outcome]
+• IF YOU FILE A FORMAL COMPLAINT: [likely outcome and timeline]
+• IF YOU HIRE A LAWYER AND SUE: [likely outcome, timeline, and cost vs reward]
+
+⏰ DEADLINE COUNTDOWN:
+List ALL relevant legal deadlines and statutes of limitations for this situation in ${region}. For each: what the deadline is, how long they have, and what happens if they miss it. Be specific with timeframes.
+
+💰 ESTIMATED SETTLEMENT VALUE:
+Provide a specific dollar range for potential compensation. Format: "LOW: $[amount] — MID: $[amount] — HIGH: $[amount]". Then break down: compensatory damages, potential punitive damages, statutory damages, attorney fees recovery, and any other applicable damages. Use ${region} currency.
+
+💼 LAWYER COST ESTIMATOR:
+Estimate what hiring a lawyer would cost for this type of case in ${region}. Include: hourly rates, contingency fee percentages, flat fee options if applicable, and total estimated legal costs. Also explain whether this case is worth the legal investment.
+
+🔓 STEP-BY-STEP LEGAL RESOLUTION:
+Give an extremely detailed, numbered step-by-step plan (8-12 steps) with specific actions, who to contact (include actual agency names and websites for ${region}), forms to file, and expected timelines for each step.
+
+⚠️ COMMON MISTAKES TO AVOID:
+List 5-7 critical mistakes people commonly make in this type of situation that could destroy their case. Be specific and explain WHY each mistake is dangerous.`;
 
   let text;
 
   if (IS_DEV && GROQ_KEY) {
-    text = await callGroqDirect(prompt, 'You are LegalCheck, a legal assistant.');
+    text = await callGroqDirect(prompt, `You are LegalCheck Premium, an elite AI legal strategist. You provide the most thorough, specific, and actionable legal intelligence available. Every response must feel like a $500/hr attorney consultation. Never be vague. Always cite specific laws, real precedent patterns, and real dollar figures. You operate in ${region} jurisdiction.`);
   } else {
     const res = await fetch(API_ENDPOINT, {
       method: 'POST',

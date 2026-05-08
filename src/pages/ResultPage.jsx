@@ -82,29 +82,51 @@ export default function ResultPage() {
             {!isUnlocked && verdictData.legalAlternativeExists && (
               <div className="premium-teaser-box">
                 <div className="pt-header">
-                  <span className="pt-badge">PREMIUM FEATURES</span>
-                  <h3>Unlock the Full Legal Blueprint</h3>
+                  <span className="pt-badge">PREMIUM INTELLIGENCE</span>
+                  <h3>Unlock Your Full Legal Strategy Report</h3>
+                  <p style={{ color: 'var(--text3)', fontSize: '.85rem', marginTop: '8px' }}>Get the same quality analysis a $500/hr attorney would provide</p>
                 </div>
                 <div className="pt-grid">
                   <div className="pt-item">
-                    <span className="pt-icon">🔓</span>
+                    <span className="pt-icon">📊</span>
                     <div>
-                      <h4>The Step-by-Step Method</h4>
-                      <p>Exact instructions on how to resolve this legally.</p>
+                      <h4>Case Strength Score</h4>
+                      <p>Rated 1-100 with detailed strength/weakness breakdown</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">🎁</span>
+                    <span className="pt-icon">📈</span>
                     <div>
-                      <h4>Benefit Analysis</h4>
-                      <p>How this situation can turn into an advantage for you.</p>
+                      <h4>Win Probability</h4>
+                      <p>Percentage chance of winning based on {region} precedents</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">💵</span>
+                    <span className="pt-icon">📝</span>
                     <div>
-                      <h4>Lawsuit Valuation</h4>
-                      <p>Estimate of potential winnings/settlement in {region}.</p>
+                      <h4>Ready-to-Send Demand Letter</h4>
+                      <p>Professional letter you can copy, paste, and send today</p>
+                    </div>
+                  </div>
+                  <div className="pt-item">
+                    <span className="pt-icon">💰</span>
+                    <div>
+                      <h4>Settlement Valuation</h4>
+                      <p>Exact LOW / MID / HIGH dollar ranges for your case</p>
+                    </div>
+                  </div>
+                  <div className="pt-item">
+                    <span className="pt-icon">🎯</span>
+                    <div>
+                      <h4>Negotiation Playbook</h4>
+                      <p>5-step tactical guide to maximize your outcome</p>
+                    </div>
+                  </div>
+                  <div className="pt-item">
+                    <span className="pt-icon">📁</span>
+                    <div>
+                      <h4>Similar Cases & Outcomes</h4>
+                      <p>Real precedents showing what others won in your situation</p>
                     </div>
                   </div>
                 </div>
@@ -115,9 +137,9 @@ export default function ResultPage() {
             {verdictData.legalAlternativeExists && (
               <div className="alt-section">
                 <div className="alt-header">
-                  <span className="alt-icon">💡</span>
+                  <span className="alt-icon">⚡</span>
                   <div>
-                    <h2 className="alt-title">Found: Legal Alternative Method</h2>
+                    <h2 className="alt-title">Premium Legal Intelligence Report</h2>
                     {verdictData.legalAlternativeTeaser && (
                       <p className="alt-teaser">"{verdictData.legalAlternativeTeaser}"</p>
                     )}
@@ -128,7 +150,7 @@ export default function ResultPage() {
                   <div className="alt-locked">
                     {isPremium ? (
                       <button className="btn btn-primary" onClick={fetchLegalAlt}>
-                        Unlock Premium Features (Member Access) →
+                        Generate Premium Report (Member Access) →
                       </button>
                     ) : (
                       <div className="alt-unlock-row">
@@ -136,18 +158,18 @@ export default function ResultPage() {
                           Unlock Full Report for $2.99 →
                         </button>
                         <button className="btn btn-secondary" onClick={() => setShowModal(true)}>
-                          Yearly Membership $24.99/yr
+                          Yearly Membership $24.99/yr — Unlimited Reports
                         </button>
                       </div>
                     )}
-                    <span className="alt-lock-note">One-time or membership. Includes Lawsuit Valuation Engine.</span>
+                    <span className="alt-lock-note">12-section legal intelligence report · Demand letter draft · Settlement valuation · Negotiation playbook</span>
                   </div>
                 )}
 
                 {loadingAlt && (
                   <div className="alt-loading">
                     <div className="mini-spinner" />
-                    <span>Cross-referencing {region} legal codes & precedents...</span>
+                    <span>Generating premium intelligence report for {region}... This takes 15-30 seconds.</span>
                   </div>
                 )}
 
@@ -160,55 +182,123 @@ export default function ResultPage() {
 
                 {isUnlocked && legalAlt && (
                   <div className="alt-content fade-in">
-                    <div className="alt-block">
-                      <h4 className="alt-block-title">🔓 The Legal Way To Do This</h4>
-                      <p className="card-body">{legalAlt.theWay}</p>
-                    </div>
-                    
-                    <div className="divider" />
-                    
-                    <div className="alt-grid">
-                      <div className="alt-block">
-                        <h4 className="alt-block-title">📝 What You'll Need</h4>
-                        <p className="card-body">{legalAlt.whatYouNeed}</p>
+
+                    {/* Section 1: Case Strength Score */}
+                    {legalAlt.caseStrength && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.05))', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)' }}>📊 Case Strength Score</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.caseStrength}</p>
                       </div>
-                      <div className="alt-block">
-                        <h4 className="alt-block-title">⏱️ How Long It Takes</h4>
-                        <p className="card-body">{legalAlt.howLong}</p>
+                    )}
+
+                    {/* Section 2: Win Probability */}
+                    {legalAlt.winProbability && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.05))', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--green)' }}>📈 Win Probability</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.winProbability}</p>
                       </div>
-                    </div>
+                    )}
+
+                    {/* Section 3: Similar Cases */}
+                    {legalAlt.similarCases && (
+                      <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--text)' }}>📁 Similar Cases & Outcomes</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.similarCases}</p>
+                      </div>
+                    )}
 
                     <div className="divider" />
 
-                    <div className="alt-grid">
-                      <div className="alt-block">
-                        <h4 className="alt-block-title">💰 What It Might Cost</h4>
-                        <p className="card-body">{legalAlt.cost}</p>
-                      </div>
-                      <div className="alt-block">
-                        <h4 className="alt-block-title" style={{ color: 'var(--red)' }}>⚠️ Watch Out For</h4>
-                        <p className="card-body">{legalAlt.watchOut}</p>
-                      </div>
-                    </div>
-
-                    {/* New Premium Sections */}
-                    <div className="divider" />
-                    
-                    <div className="premium-result-block">
-                      <div className="alt-block">
-                        <h4 className="alt-block-title" style={{ color: 'var(--accent-l)' }}>🎁 How You Can Benefit</h4>
-                        <p className="card-body">{legalAlt.potentialBenefit}</p>
-                      </div>
-                    </div>
-
-                    <div className="premium-result-block lawsuit-valuation">
-                      <div className="alt-block">
-                        <h4 className="alt-block-title" style={{ color: 'var(--green)' }}>💵 Estimated Lawsuit Winnings</h4>
-                        <div className="valuation-card">
-                          <p className="card-body" style={{ fontSize: '1.1rem', fontWeight: '500' }}>{legalAlt.lawsuitWinnings}</p>
+                    {/* Section 4: Demand Letter */}
+                    {legalAlt.demandLetter && (
+                      <div className="premium-section" style={{ background: 'var(--bg2)', border: '2px solid var(--accent)', borderRadius: 'var(--r-lg)', padding: '24px', position: 'relative' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
+                          <h4 className="premium-section-title" style={{ color: 'var(--accent-l)', margin: 0 }}>📝 Demand Letter Draft</h4>
+                          <button 
+                            className="btn btn-ghost btn-sm" 
+                            onClick={() => { navigator.clipboard.writeText(legalAlt.demandLetter); }}
+                            style={{ fontSize: '0.75rem' }}
+                          >
+                            📋 Copy to Clipboard
+                          </button>
+                        </div>
+                        <div style={{ background: 'var(--bg)', padding: '20px', borderRadius: 'var(--r)', border: '1px solid var(--border)', fontFamily: 'serif', fontSize: '0.9rem', lineHeight: '1.8', color: 'var(--text2)', whiteSpace: 'pre-line' }}>
+                          {legalAlt.demandLetter}
                         </div>
                       </div>
-                    </div>
+                    )}
+
+                    <div className="divider" />
+
+                    {/* Section 5: Evidence Checklist */}
+                    {legalAlt.evidenceChecklist && (
+                      <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--orange)' }}>📋 Evidence Checklist</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.evidenceChecklist}</p>
+                      </div>
+                    )}
+
+                    {/* Section 6: Negotiation Playbook */}
+                    {legalAlt.negotiationPlaybook && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.06), rgba(239,68,68,0.03))', border: '1px solid rgba(249,115,22,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--orange)' }}>🎯 Negotiation Playbook</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.negotiationPlaybook}</p>
+                      </div>
+                    )}
+
+                    <div className="divider" />
+
+                    {/* Section 7: Risk Matrix */}
+                    {legalAlt.riskMatrix && (
+                      <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⚖️ Risk Matrix</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.riskMatrix}</p>
+                      </div>
+                    )}
+
+                    {/* Section 8: Deadlines */}
+                    {legalAlt.deadlines && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(249,115,22,0.05))', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⏰ Deadline Countdown</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.deadlines}</p>
+                      </div>
+                    )}
+
+                    <div className="divider" />
+
+                    {/* Section 9: Settlement Value */}
+                    {legalAlt.settlementValue && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.06))', border: '2px solid rgba(34,197,94,0.4)', borderRadius: 'var(--r-lg)', padding: '28px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--green)', fontSize: '1rem' }}>💰 Estimated Settlement Value</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line', fontSize: '1rem', fontWeight: '500' }}>{legalAlt.settlementValue}</p>
+                      </div>
+                    )}
+
+                    {/* Section 10: Lawyer Cost */}
+                    {legalAlt.lawyerCost && (
+                      <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--text)' }}>💼 Lawyer Cost Estimator</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.lawyerCost}</p>
+                      </div>
+                    )}
+
+                    <div className="divider" />
+
+                    {/* Section 11: Step-by-Step Resolution */}
+                    {legalAlt.theWay && (
+                      <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.04))', border: '1px solid rgba(59,130,246,0.2)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)' }}>🔓 Step-by-Step Legal Resolution</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.theWay}</p>
+                      </div>
+                    )}
+
+                    {/* Section 12: Common Mistakes */}
+                    {legalAlt.watchOut && (
+                      <div className="premium-section" style={{ background: 'rgba(239,68,68,0.04)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⚠️ Common Mistakes to Avoid</h4>
+                        <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.watchOut}</p>
+                      </div>
+                    )}
 
                     <div className="divider" />
                     <FeedbackWidget situation={situation} verdictText={JSON.stringify(verdictData)} />
