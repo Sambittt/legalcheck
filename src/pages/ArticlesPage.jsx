@@ -31,36 +31,22 @@ const CASE_STUDIES = [
   },
   {
     id: 4,
-    title: "The GDPR breach that led to a €2,500 payout",
-    category: "Data Privacy",
-    readTime: "3 min",
-    excerpt: "An EU citizen used LegalCheck to draft a formal complaint regarding illegal data harvesting, resulting in an out-of-court settlement from a tech firm.",
-    outcome: "€2,500 Payout",
-    image: "/consultation.png"
+    title: "Combatting Illegal 'Lemon Law' Sales for a Used Vehicle",
+    category: "Consumer",
+    summary: "David bought a used truck that broke down 3 days later. The dealer claimed 'As-Is', but state law said otherwise.",
+    outcome: "Full Refund ($8,400)",
+    content: "Even though the contract said 'As-Is', David's state has a mandatory 30-day warranty for vehicles over a certain price point. LegalCheck cited the exact consumer protection act. David showed this to the dealer, who immediately offered a full refund rather than face a state audit."
   }
 ];
 
 export default function ArticlesPage() {
+  const [selected, setSelected] = useState(null);
+
   return (
     <div className="articles-page">
-      <section className="section">
+      <section className="section" style={{ background: 'var(--bg2)', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-badge">Case Studies & Research</div>
-            <h1 className="section-h2">Real Outcomes, Real People</h1>
-            <p className="section-sub">Research and case studies on how individuals have successfully used legal information to save money and win disputes.</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '40px' }}>
-            {CASE_STUDIES.map(caseStudy => (
-              <div key={caseStudy.id} className="glass" style={{ borderRadius: 'var(--r-lg)', overflow: 'hidden', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ height: '200px', backgroundImage: `url(${caseStudy.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-                  <div style={{ position: 'absolute', top: '16px', left: '16px', background: 'var(--accent)', color: '#fff', padding: '4px 12px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 700 }}>
-                    {caseStudy.category}
-                  </div>
-                </div>
-                <div style={{ padding: '32px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', gap: '12px', color: 'var(--text3)', fontSize: '0.75rem', marginBottom: '16px', alignItems: 'center' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={12} /> {caseStudy.readTime}</span>
                     <span>•</span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><TrendingUp size={12} /> {caseStudy.outcome}</span>
