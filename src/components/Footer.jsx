@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Scale, Mail, Github, Twitter, Linkedin } from 'lucide-react';
+import { Scale, Mail, Globe, MessageSquare } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -14,9 +14,9 @@ export default function Footer() {
             Professional AI legal intelligence for individuals and small businesses. Citing actual statutes across US, UK, Canada, and EU.
           </p>
           <div style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
-            <a href="#" className="footer-link"><Twitter size={20} /></a>
-            <a href="#" className="footer-link"><Linkedin size={20} /></a>
-            <a href="#" className="footer-link"><Github size={20} /></a>
+            <a href="#" className="footer-link"><Mail size={20} /></a>
+            <a href="#" className="footer-link"><Globe size={20} /></a>
+            <a href="#" className="footer-link"><MessageSquare size={20} /></a>
           </div>
         </div>
 

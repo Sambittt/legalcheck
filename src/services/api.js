@@ -126,7 +126,7 @@ export function parseAlternativeText(text) {
 }
 
 // ── API calls ─────────────────────────────────────────────
-export async function getVerdict(situation, region = 'USA') {
+export async function getLegalVerdict(situation, region = 'USA') {
   let text;
   const userPrompt = `JURISDICTION: ${region}
 SITUATION: ${situation}
@@ -158,7 +158,7 @@ Analyze this situation specifically under ${region} law. Cite relevant statutes,
   return parseVerdictText(text);
 }
 
-export async function getLegalAlternative(situation, verdict, region = 'USA') {
+export async function getPremiumReport(situation, verdict, region = 'USA') {
   const prompt = `JURISDICTION: ${region}
 The user's situation was: ${situation}
 Your previous verdict was: ${verdict}
