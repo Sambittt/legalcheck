@@ -31,7 +31,16 @@ const YEARLY_FEATURES = [
   '$24.99/year — less than $2.10/month'
 ];
 
+import { useEffect } from 'react';
+
 export default function PricingPage() {
+  useEffect(() => {
+    document.title = "Pricing & Premium Plans — LegalCheck AI";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Unlock 12-section premium legal intelligence reports, demand letters, settlement valuations, and negotiation playbooks. Affordable plans for every legal need.");
+    }
+  }, []);
   return (
     <div className="pricing-page">
       <div className="container" style={{ maxWidth: '1040px' }}>

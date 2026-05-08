@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../components/LoadingAnimation';
 import { getVerdict } from '../services/api';
@@ -22,6 +22,14 @@ export default function CheckPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Analyze Your Situation — LegalCheck AI Assistant";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Describe your legal situation in plain English. Our AI analyzes US, UK, Canada, and EU statutes to give you a verdict and action steps instantly.");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

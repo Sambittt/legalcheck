@@ -1,16 +1,17 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { signInWithGoogle } from '../services/firebase';
 
 const CATEGORIES = [
-  { icon: '🏠', name: 'Landlord & Tenant', desc: 'Evictions, deposits, lease violations, entry rights', laws: 'US, UK, CA, EU Codes' },
-  { icon: '💼', name: 'Employment Law', desc: 'Wrongful termination, wage theft, harassment, leave', laws: 'FLSA, Employment Act, ESA' },
-  { icon: '🏥', name: 'Medical & Insurance', desc: 'Billing fraud, denied claims, surprise bills, privacy', laws: 'HIPAA, GDPR, Health Acts' },
-  { icon: '🚗', name: 'Consumer Protection', desc: 'Fraud, lemon laws, warranty issues, returns', laws: 'FTC, Consumer Rights Act' },
-  { icon: '👮', name: 'Civil Rights', desc: 'Discrimination, police conduct, voting, disability', laws: 'Civil Rights Act, Equality Act' },
-  { icon: '💳', name: 'Debt & Banking', desc: 'Debt collectors, credit reports, illegal fees', laws: 'FDCPA, Banking Directives' },
-  { icon: '📱', name: 'Privacy & Data', desc: 'Recording laws, data breaches, surveillance', laws: 'GDPR, CCPA, Privacy Acts' },
-  { icon: '🏪', name: 'Business & Contracts', desc: 'Breach of contract, NDA violations, IP disputes', laws: 'UCC, Common Law, Civil Codes' }
+  { icon: '🏠', name: 'Landlord & Tenant Rights', desc: 'Illegal evictions, security deposit disputes, lease violations, tenant rights, and landlord entry laws.', laws: 'US Federal, UK Housing Act, CA RTA, EU Codes' },
+  { icon: '💼', name: 'Employment & Labor Law', desc: 'Wrongful termination, unpaid wages, workplace harassment, discrimination, and FMLA/leave rights.', laws: 'FLSA, UK Employment Act, Canada Labor Code' },
+  { icon: '🏥', name: 'Medical & Healthcare Rights', desc: 'Medical billing fraud, surprise bills, HIPAA violations, insurance claim denials, and patient privacy.', laws: 'HIPAA, GDPR, NHI Acts' },
+  { icon: '🚗', name: 'Consumer Protection Law', desc: 'Consumer fraud, lemon laws, warranty disputes, illegal debt collection, and refund rights.', laws: 'FTC, Consumer Rights Act, Australian Consumer Law' },
+  { icon: '👮', name: 'Civil Rights & Discrimination', desc: 'Police misconduct, ADA compliance, racial discrimination, voting rights, and constitutional law.', laws: 'Civil Rights Act, UK Equality Act' },
+  { icon: '💳', name: 'Debt, Banking & Credit', desc: 'Illegal credit card fees, FDCPA violations, credit report errors, and predatory lending.', laws: 'FDCPA, Banking Directives' },
+  { icon: '📱', name: 'Digital Privacy & Data Law', desc: 'Data breaches, illegal recording, online surveillance, GDPR compliance, and biometric privacy.', laws: 'GDPR, CCPA, PIPEDA' },
+  { icon: '🏪', name: 'Small Business & Contracts', desc: 'Breach of contract, NDA disputes, startup legal help, trademark infringement, and partnership laws.', laws: 'UCC, UK Companies Act' }
 ];
 
 const STATS = [
@@ -53,6 +54,14 @@ const HOW_STEPS = [
 export default function LandingPage() {
   const { user } = useAuth();
 
+  useEffect(() => {
+    document.title = "LegalCheck — Free AI Legal Assistant | Is it Illegal?";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Get instant legal analysis for landlord-tenant disputes, employment law, and consumer protection. Free AI Lawyer supporting US, UK, Canada, and EU law.");
+    }
+  }, []);
+
   return (
     <>
       {/* ═══ Hero ═══ */}
@@ -66,10 +75,10 @@ export default function LandingPage() {
               <span>Multi-Region AI • Now with Lawsuit Valuation Engine 💵</span>
             </div>
             <h1 className="hero-h1">
-              Know If What Happened<br />To You Is <span className="hero-accent">Illegal</span>
+              Your Free <span className="hero-accent">AI Legal Assistant</span>
             </h1>
             <p className="hero-sub">
-              Describe any situation in plain English. Our AI cross-references global law to deliver a clear verdict, the exact statute, and <strong>estimated settlement winnings</strong> — in under 30 seconds.
+              Describe any situation in plain English. Our AI lawyer cross-references <strong>US, UK, Canada, and EU law</strong> to deliver a clear verdict, the exact statute, and <strong>estimated lawsuit winnings</strong> — in under 30 seconds.
             </p>
             <div className="hero-actions">
               <Link to="/check" className="btn btn-primary btn-lg hero-cta">
@@ -252,30 +261,43 @@ export default function LandingPage() {
       </section>
 
       {/* ═══ Testimonial ═══ */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="testimonials-wrap">
-            <div className="testimonial-card-v2">
-              <div className="tc-stars">★★★★★</div>
-              <p className="tc-quote">"I was about to give up on my landlord situation. LegalCheck cited Cal. Civ. Code § 1954 — the exact law he was violating. I printed the result and showed it to him. Problem solved in 24 hours."</p>
-              <div className="tc-author">
-                <div className="tc-avatar">T</div>
-                <div>
-                  <div className="tc-name">Tenant in California</div>
-                  <div className="tc-source">via r/legaladvice</div>
-                </div>
-              </div>
             </div>
-            <div className="testimonial-card-v2">
-              <div className="tc-stars">★★★★★</div>
-              <p className="tc-quote">"My employer in London was docking my pay for breaks. LegalCheck identified it violated the Employment Rights Act 1996 and gave me the exact steps to contact ACAS."</p>
-              <div className="tc-author">
-                <div className="tc-avatar">J</div>
-                <div>
-                  <div className="tc-name">Office Worker, London</div>
-                  <div className="tc-source">UK User</div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SEO Keywords / FAQ Section ═══ */}
+      <section className="section" id="faq">
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">⚖️ Common Questions</div>
+            <h2 className="section-h2">Is it Illegal? Frequently Asked Questions</h2>
+            <p className="section-sub">Quick answers to common legal situations analyzed by our AI Legal Assistant.</p>
+          </div>
+          <div className="faq-grid">
+            <div className="faq-card">
+              <h3 className="faq-q">Is it illegal for a landlord to enter without notice?</h3>
+              <p className="faq-a">In most jurisdictions like California or the UK, it is generally illegal. Landlords usually must provide 24-48 hours notice except in emergencies. Use our checker for your specific region.</p>
+            </div>
+            <div className="faq-card">
+              <h3 className="faq-q">Can I sue for wrongful termination?</h3>
+              <p className="faq-a">If you were fired for discriminatory reasons, whistleblowing, or in breach of contract, you may have a case. Our AI analyzes specific labor laws like the FLSA or UK Employment Rights Act.</p>
+            </div>
+            <div className="faq-card">
+              <h3 className="faq-q">How do I report a HIPAA violation?</h3>
+              <p className="faq-a">You can file a complaint with the OCR. LegalCheck provides the exact steps and forms needed to handle medical privacy violations in the US.</p>
+            </div>
+            <div className="faq-card">
+              <h3 className="faq-q">What are my rights if my data is leaked?</h3>
+              <p className="faq-a">Under GDPR (EU/UK) or CCPA (US), you may be entitled to compensation. LegalCheck estimates potential damages based on the scale of the data breach.</p>
+            </div>
+            <div className="faq-card">
+              <h3 className="faq-q">Is debt collector harassment illegal?</h3>
+              <p className="faq-a">Yes, under the FDCPA in the US and similar laws globally, collectors cannot harass, threaten, or lie to you. Use our tool to generate a demand letter to stop them.</p>
+            </div>
+            <div className="faq-card">
+              <h3 className="faq-q">Are lemon laws the same in every state?</h3>
+              <p className="faq-a">No, lemon laws vary significantly by state. LegalCheck automatically detects your region to provide the specific statute applicable to your car's defect.</p>
             </div>
           </div>
         </div>
