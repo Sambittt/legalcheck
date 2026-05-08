@@ -173,7 +173,7 @@ const ArticlesPage = () => {
               </button>
               <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '40px', background: 'linear-gradient(to top, var(--bg), transparent)', zIndex: 5 }}>
                 <span className="badge-sm" style={{ background: 'var(--accent)', color: '#fff', padding: '4px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 800 }}>{selectedCase.category}</span>
-                <h2 style={{ fontSize: '2.25rem', fontWeight: 900, marginTop: '12px', color: 'var(--text)', letter-spacing: '-0.02em' }}>{selectedCase.title}</h2>
+                <h2 style={{ fontSize: '2.25rem', fontWeight: 900, marginTop: '12px', color: 'var(--text)', letterSpacing: '-0.02em' }}>{selectedCase.title}</h2>
               </div>
             </div>
             <div style={{ padding: '40px', color: 'var(--text2)', lineHeight: '1.8' }}>
