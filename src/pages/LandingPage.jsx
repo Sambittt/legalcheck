@@ -49,12 +49,12 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       {/* ═══ Hero ═══ */}
-      <section className="hero" style={{ paddingTop: '200px', paddingBottom: '140px' }}>
-        <div className="hero-mesh" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 30%, rgba(var(--accent-rgb), 0.15), transparent 50%), radial-gradient(circle at 30% 70%, rgba(var(--green-rgb), 0.05), transparent 50%)', zIndex: -1 }} />
-        <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")', opacity: 0.2 }} />
-        <div className="hero-gradient" />
+      <section className="hero" style={{ paddingTop: '200px', paddingBottom: '140px', background: 'var(--bg2)', overflow: 'hidden' }}>
+        <div className="hero-mesh" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 30%, rgba(var(--accent-rgb), 0.25), transparent 40%), radial-gradient(circle at 30% 70%, rgba(var(--accent-rgb), 0.1), transparent 50%)', zIndex: 0 }} />
+        <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")', opacity: 0.15, filter: 'grayscale(100%) brightness(0.5)' }} />
+        <div className="hero-gradient" style={{ background: 'linear-gradient(to right, var(--bg2) 30%, transparent 100%)' }} />
         
-        <div className="container" style={{ position: 'relative' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 10 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
             <div className="fade-in-up">
               <div className="section-badge" style={{ background: 'rgba(var(--accent-rgb), 0.1)', borderColor: 'rgba(var(--accent-rgb), 0.2)', color: 'var(--accent)' }}>

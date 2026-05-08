@@ -6,6 +6,14 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    
+    const mailtoUrl = `mailto:contact.legalcheckai@gmail.com?subject=${encodeURIComponent(`${subject} from ${name}`)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+    window.location.href = mailtoUrl;
     setSubmitted(true);
   };
 
@@ -69,16 +77,16 @@ export default function ContactPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
                     <div>
                       <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.85rem', fontWeight: 600 }}>Name</label>
-                      <input type="text" required style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }} />
+                      <input name="name" type="text" required style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.85rem', fontWeight: 600 }}>Email</label>
-                      <input type="email" required style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }} />
+                      <input name="email" type="email" required style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }} />
                     </div>
                   </div>
                   <div style={{ marginBottom: '20px' }}>
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.85rem', fontWeight: 600 }}>Subject</label>
-                    <select style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
+                    <select name="subject" style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}>
                       <option>General Inquiry</option>
                       <option>Technical Support</option>
                       <option>Billing Question</option>
@@ -87,7 +95,7 @@ export default function ContactPage() {
                   </div>
                   <div style={{ marginBottom: '32px' }}>
                     <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.85rem', fontWeight: 600 }}>Message</label>
-                    <textarea required rows={5} style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}></textarea>
+                    <textarea name="message" required rows={5} style={{ width: '100%', padding: '12px', borderRadius: 'var(--r)', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--text)' }}></textarea>
                   </div>
                   <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
                     Send Message <ArrowRight size={18} />

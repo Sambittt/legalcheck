@@ -14,9 +14,9 @@ export default function Footer() {
             Professional AI legal intelligence for individuals and small businesses. Citing actual statutes across US, UK, Canada, and EU.
           </p>
           <div style={{ display: 'flex', gap: '16px', marginTop: '24px' }}>
-            <a href="#" className="footer-link"><Mail size={20} /></a>
-            <a href="#" className="footer-link"><Globe size={20} /></a>
-            <a href="#" className="footer-link"><MessageSquare size={20} /></a>
+            <a href="mailto:contact.legalcheckai@gmail.com" className="footer-link"><Mail size={20} /></a>
+            <a href="https://legal.sambit.page" className="footer-link"><Globe size={20} /></a>
+            <a href="/contact" className="footer-link"><MessageSquare size={20} /></a>
           </div>
         </div>
 
@@ -26,7 +26,6 @@ export default function Footer() {
             <li><Link to="/check" className="footer-link">AI Checker</Link></li>
             <li><Link to="/pricing" className="footer-link">Pricing</Link></li>
             <li><Link to="/articles" className="footer-link">Case Studies</Link></li>
-            <li><Link to="/admin" className="footer-link">Admin Dashboard</Link></li>
           </ul>
         </div>
 
@@ -57,7 +56,7 @@ export default function Footer() {
       <div className="container footer-bottom">
         <p>&copy; {new Date().getFullYear()} LegalCheck AI. All rights reserved.</p>
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <span style={{ fontSize: '0.7rem', opacity: 0.5 }}>v1.2.4-EMERALD</span>
+          <span style={{ fontSize: '0.7rem', opacity: 0.5 }}>v1.2.5-ROYAL</span>
           <span>Powered by Groq Cloud</span>
           <span>SSL Secure</span>
         </div>

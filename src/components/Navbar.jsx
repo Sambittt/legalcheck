@@ -32,10 +32,6 @@ export default function Navbar() {
           <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-
-          {isAdmin && (
-            <Link to="/admin" className="btn btn-secondary btn-sm">Admin</Link>
-          )}
           
           <Link to="/check" className="btn btn-primary btn-sm">Start Analysis</Link>
         </div>
