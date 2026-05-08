@@ -25,9 +25,9 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ zIndex: mobileMenu ? 3000 : 1000 }}>
       <div className="container navbar-inner">
-        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ zIndex: 3000 }}>
+        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ position: 'relative', zIndex: 2700 }}>
           <Scale className="logo-icon" size={24} />
           <span>LegalCheck</span>
         </Link>
@@ -50,7 +50,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Toggle Container */}
-        <div className="mobile-only" style={{ gap: '8px', alignItems: 'center', zIndex: 3000 }}>
+        <div className="mobile-only" style={{ gap: '8px', alignItems: 'center', position: 'relative', zIndex: 2700 }}>
           <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>

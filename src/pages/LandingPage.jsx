@@ -49,7 +49,7 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       {/* ═══ Hero ═══ */}
-      <section className="hero" style={{ paddingTop: '200px', paddingBottom: '140px', background: 'var(--bg2)', overflow: 'hidden' }}>
+      <section className="hero" style={{ background: 'var(--bg2)', overflow: 'hidden' }}>
         <div className="hero-mesh" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 30%, rgba(var(--accent-rgb), 0.25), transparent 40%), radial-gradient(circle at 30% 70%, rgba(var(--accent-rgb), 0.1), transparent 50%)', zIndex: 0 }} />
         <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")', opacity: 0.15, filter: 'grayscale(100%) brightness(0.5)' }} />
         <div className="hero-gradient" style={{ background: 'linear-gradient(to right, var(--bg2) 30%, transparent 100%)' }} />
@@ -67,7 +67,7 @@ export default function LandingPage() {
               <p className="hero-sub" style={{ color: 'var(--text2)', maxWidth: '600px' }}>
                 The world's most advanced AI engine for immediate statutory analysis. Get a clear verdict and settlement valuation in under 30 seconds.
               </p>
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <button onClick={() => window.location.href='/check'} className="btn btn-primary btn-lg">
                   Analyze Case <ArrowRight size={20} />
                 </button>
@@ -170,7 +170,7 @@ export default function LandingPage() {
       </section>
 
       {/* ═══ Stats/Trust Section (Relocated) ═══ */}
-      <section style={{ padding: '100px 0', background: 'var(--bg)', borderY: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+      <section className="section" style={{ background: 'var(--bg)', position: 'relative', overflow: 'hidden' }}>
         <div className="container">
           <div className="section-header">
             <div className="section-badge">Global Impact</div>
@@ -232,7 +232,7 @@ export default function LandingPage() {
       </section>
 
       {/* ═══ Final CTA ═══ */}
-      <section className="section" style={{ background: 'var(--accent)', color: '#fff', borderRadius: '32px', margin: '0 40px 100px 40px', overflow: 'hidden', position: 'relative' }}>
+      <section className="section cta-section" style={{ background: 'var(--accent)', color: '#fff', borderRadius: '24px', margin: '0 20px 60px 20px', overflow: 'hidden', position: 'relative' }}>
         <div className="hero-gradient" style={{ opacity: 0.2 }} />
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <h2 className="section-h2" style={{ color: '#fff', marginBottom: '24px' }}>Stop Guessing. Start Knowing.</h2>
