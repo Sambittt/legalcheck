@@ -66,6 +66,7 @@ export default function LandingPage() {
     <>
       {/* ═══ Hero ═══ */}
       <section className="hero">
+        <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")' }} />
         <div className="hero-grid-bg" />
         <div className="hero-gradient" />
         <div className="container hero-container">
@@ -168,25 +169,35 @@ export default function LandingPage() {
       {/* ═══ How it works ═══ */}
       <section className="section section-alt" id="how">
         <div className="container">
-          <div className="section-header">
-            <div className="section-badge">⚙️ Process</div>
-            <h2 className="section-h2">How LegalCheck Works</h2>
-            <p className="section-sub">Three steps from confusion to clarity. Every analysis cites specific statutes you can verify in your jurisdiction.</p>
-          </div>
-          <div className="how-timeline">
-            {HOW_STEPS.map((step, i) => (
-              <div key={i} className="how-step">
-                <div className="how-num-wrap">
-                  <div className="how-num">{step.num}</div>
-                  {i < HOW_STEPS.length - 1 && <div className="how-line" />}
-                </div>
-                <div className="how-content">
-                  <h3 className="how-title">{step.title}</h3>
-                  <p className="how-desc">{step.desc}</p>
-                  <p className="how-detail">{step.detail}</p>
-                </div>
+          <div className="how-grid-wrap">
+            <div className="how-left">
+              <div className="section-header" style={{ textAlign: 'left' }}>
+                <div className="section-badge">⚙️ Process</div>
+                <h2 className="section-h2">How LegalCheck Works</h2>
+                <p className="section-sub" style={{ margin: '0' }}>Three steps from confusion to clarity. Every analysis cites specific statutes you can verify in your jurisdiction.</p>
               </div>
-            ))}
+              <div className="how-timeline">
+                {HOW_STEPS.map((step, i) => (
+                  <div key={i} className="how-step">
+                    <div className="how-num-wrap">
+                      <div className="how-num">{step.num}</div>
+                      {i < HOW_STEPS.length - 1 && <div className="how-line" />}
+                    </div>
+                    <div className="how-content">
+                      <h3 className="how-title">{step.title}</h3>
+                      <p className="how-desc">{step.desc}</p>
+                      <p className="how-detail">{step.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="how-right">
+              <div className="how-image-card">
+                <img src="/gavel.png" alt="Legal Gavel and Digital Verdict" className="how-img" />
+                <div className="how-img-overlay" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -219,18 +230,23 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="accuracy-image">
-              <div className="security-seal">
-                <div className="seal-icon">🔒</div>
-                <div className="seal-text">
-                  <strong>SECURE & PRIVATE</strong>
-                  <span>Global Privacy Standards</span>
+            <div className="accuracy-visual">
+              <div className="acc-img-wrap">
+                <img src="/consultation.png" alt="Legal Consultation" className="acc-img" />
+                <div className="acc-glass-overlay">
+                  <div className="security-seal">
+                    <div className="seal-icon">🔒</div>
+                    <div className="seal-text">
+                      <strong>SECURE & PRIVATE</strong>
+                      <span>Global Privacy Standards</span>
+                    </div>
+                  </div>
+                  <div className="seal-list">
+                    <div className="seal-badge">GDPR COMPLIANT</div>
+                    <div className="seal-badge">CCPA READY</div>
+                    <div className="seal-badge">UK DPA 2018</div>
+                  </div>
                 </div>
-              </div>
-              <div className="seal-list">
-                <div className="seal-badge">GDPR COMPLIANT</div>
-                <div className="seal-badge">CCPA READY</div>
-                <div className="seal-badge">UK DPA 2018</div>
               </div>
             </div>
           </div>
