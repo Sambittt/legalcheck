@@ -38,6 +38,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
       <App />
+      <script dangerouslySetInnerHTML={{ __html: "window.alert('LegalCheck v1.2.4 EMERALD is now LIVE! Force refresh (Ctrl+F5) if you see blue.')" }} />
     </ErrorBoundary>
   </StrictMode>,
 )
