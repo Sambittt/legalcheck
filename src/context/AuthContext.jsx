@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { onAuthChange, getUserPlan } from '../services/firebase';
+import { onSnapshot, doc } from 'firebase/firestore';
+import { onAuthChange, db } from '../services/firebase';
 
 const AuthContext = createContext(null);
 
@@ -9,17 +10,30 @@ export function AuthProvider({ children }) {
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthChange(async (firebaseUser) => {
+    let unsubPlan;
+    const unsubAuth = onAuthChange(async (firebaseUser) => {
       setUser(firebaseUser);
+      
       if (firebaseUser) {
-        const plan = await getUserPlan(firebaseUser.uid);
-        setUserPlan(plan);
+        // Real-time listener for plan changes
+        unsubPlan = onSnapshot(doc(db, 'users', firebaseUser.uid), (docSnap) => {
+          if (docSnap.exists()) {
+            setUserPlan(docSnap.data());
+          } else {
+            setUserPlan(null);
+          }
+          setAuthLoading(false);
+        });
       } else {
         setUserPlan(null);
+        setAuthLoading(false);
       }
-      setAuthLoading(false);
     });
-    return unsub;
+    
+    return () => {
+      unsubAuth();
+      if (unsubPlan) unsubPlan();
+    };
   }, []);
 
   const refreshPlan = async () => {
