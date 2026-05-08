@@ -32,7 +32,7 @@ const YEARLY_FEATURES = [
 ];
 
 import { useEffect } from 'react';
-import { CreditCard, Star, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CreditCard, Star, ArrowRight, ShieldCheck, Check } from 'lucide-react';
 
 export default function PricingPage() {
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function PricingPage() {
             <div className="pricing-cycle">forever</div>
             <ul className="pricing-features">
               {FREE_FEATURES.map((f, i) => (
-                <li key={i}><span className="feat-check green">✓</span>{f}</li>
+                <li key={i}><Check size={14} className="feat-icon green" />{f}</li>
               ))}
             </ul>
             <a href="/check" className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
@@ -74,7 +74,7 @@ export default function PricingPage() {
             <div className="pricing-cycle">per unlock</div>
             <ul className="pricing-features">
               {SINGLE_FEATURES.map((f, i) => (
-                <li key={i}><span className="feat-check accent">✓</span>{f}</li>
+                <li key={i}><Check size={14} className="feat-icon accent" />{f}</li>
               ))}
             </ul>
             <a href={SINGLE_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
@@ -91,7 +91,7 @@ export default function PricingPage() {
             <div className="pricing-cycle">per year</div>
             <ul className="pricing-features">
               {YEARLY_FEATURES.map((f, i) => (
-                <li key={i}><span className="feat-check green">✓</span>{f}</li>
+                <li key={i}><Check size={14} className="feat-icon green" />{f}</li>
               ))}
             </ul>
             <a href={YEARLY_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>

@@ -13,31 +13,32 @@ ALWAYS respond in this exact format, no exceptions:
 ---
 [VERDICT EMOJI] VERDICT: [Likely Illegal / Gray Area / Likely Legal]
 
-📋 WHAT'S HAPPENING:
+VERDICT: [Likely Illegal / Gray Area / Likely Legal]
+
+WHAT'S HAPPENING:
 [2-3 sentences explaining the situation in plain language]
 
-⚖️ THE LAW SAYS:
+THE LAW SAYS:
 [Specific law or regulation relevant to the user's jurisdiction. Example (USA): Under the Fair Housing Act (42 U.S.C. § 3604)... Example (UK): Under the Employment Rights Act 1996 section 1... Be specific.]
 
-🚨 SEVERITY: [Low / Medium / High / Urgent]
+SEVERITY: [Low / Medium / High / Urgent]
 [One sentence explaining why]
 
-✅ YOUR ACTION STEPS:
+YOUR ACTION STEPS:
 1. [Do this right now]
 2. [Do this next]
 3. [Do this if it escalates]
 4. [Final option]
 
-👨‍💼 DO YOU NEED A LAWYER?
+DO YOU NEED A LAWYER?
 [Yes / No / Maybe] — [One clear sentence why]
 
-🔓 LEGAL ALTERNATIVE EXISTS: [Yes / No]
+LEGAL ALTERNATIVE EXISTS: [Yes / No]
 [If Yes: One teaser sentence hinting at the legal method. Do NOT reveal the full method.]
 
-⚠️ DISCLAIMER: This is for informational purposes only and does not constitute legal advice.
+DISCLAIMER: This analysis is provided for informational purposes only. It is not legal advice and does not create an attorney-client relationship. Laws vary by jurisdiction and are subject to change. Always consult a licensed attorney.
 ---
 
-Verdict emoji rules: 🔴 = Likely Illegal, 🟡 = Gray Area, 🟢 = Likely Legal
 If situation is unclear ask ONE clarifying question before giving verdict.`;
 
 // ── Direct Groq call (dev only) ───────────────────────────
@@ -82,10 +83,7 @@ function extract(text, start, ...ends) {
 export function parseVerdictText(text) {
   const verdictMatch = text.match(/VERDICT:\s*(.+)/);
   const verdictLine = verdictMatch ? verdictMatch[1].trim() : '';
-  const verdictType = text.includes('🔴') ? '🔴 Likely Illegal'
-    : text.includes('🟡') ? '🟡 Gray Area'
-    : text.includes('🟢') ? '🟢 Likely Legal'
-    : verdictLine;
+  const verdictType = verdictLine;
 
   const sevMatch = text.match(/SEVERITY:\s*(Low|Medium|High|Urgent)/i);
   const severity = sevMatch ? sevMatch[1] : 'Unknown';

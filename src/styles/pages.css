@@ -8,7 +8,7 @@
  
 .check-trust-footer{display:flex;justify-content:center;gap:24px;margin-top:20px}
 .trust-item{font-size:.78rem;color:var(--text3);display:flex;align-items:center;gap:6px}
-.trust-item::before{content:'✓';color:var(--green);font-weight:900}
+.trust-item::before{content:'\2022';color:var(--accent);font-weight:900;margin-right:8px}
  
 .check-sidebar{display:flex;flex-direction:column;gap:24px}
 .sidebar-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px}

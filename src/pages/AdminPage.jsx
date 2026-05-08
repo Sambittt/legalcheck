@@ -3,6 +3,16 @@ import { useAuth } from '../context/AuthContext';
 import { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../services/firebase';
+import { 
+  Crown, 
+  Activity, 
+  Flag, 
+  Users, 
+  ArrowRight, 
+  AlertTriangle,
+  BarChart3,
+  Search
+} from 'lucide-react';
 
 export default function AdminPage() {
   const { user, isAdmin, authLoading } = useAuth();
@@ -104,7 +114,7 @@ export default function AdminPage() {
       <div className="container-wide">
         {/* Header */}
         <div className="section-header">
-          <span className="section-badge">👑 ADMIN</span>
+          <span className="section-badge"><Crown size={14} /> ADMIN</span>
           <h1 className="section-h2" style={{ color: 'var(--accent-l)' }}>Control Panel</h1>
           <p className="section-sub">
             Welcome back, <strong>{user.displayName || user.email}</strong>. Full premium access is active.
@@ -114,7 +124,7 @@ export default function AdminPage() {
         {/* Error Banner */}
         {error && (
           <div className="error-banner" style={{ marginBottom: '24px' }}>
-            ⚠️ {error}
+            <AlertTriangle size={18} /> {error}
           </div>
         )}
 
@@ -134,16 +144,16 @@ export default function AdminPage() {
           </div>
           <div style={{ ...cardStyle, textAlign: 'center' }}>
             <Link to="/check" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}>
-              Run Premium Check →
+              Run Premium Check <ArrowRight size={16} />
             </Link>
           </div>
         </div>
 
         {/* Tab Navigation */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
-          <button style={tabStyle('overview')} onClick={() => setActiveTab('overview')}>📊 Activity</button>
-          <button style={tabStyle('flagged')} onClick={() => setActiveTab('flagged')}>🚩 Flagged Reviews ({flagged.length})</button>
-          <button style={tabStyle('users')} onClick={() => setActiveTab('users')}>👥 Users ({users.length})</button>
+          <button style={tabStyle('overview')} onClick={() => setActiveTab('overview')}><BarChart3 size={16} /> Activity</button>
+          <button style={tabStyle('flagged')} onClick={() => setActiveTab('flagged')}><Flag size={16} /> Flagged Reviews ({flagged.length})</button>
+          <button style={tabStyle('users')} onClick={() => setActiveTab('users')}><Users size={16} /> Users ({users.length})</button>
         </div>
 
         {/* Tab Content */}
@@ -191,7 +201,7 @@ export default function AdminPage() {
             {activeTab === 'flagged' && (
               <div style={cardStyle}>
                 <h3 style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  🚩 Flagged Reviews
+                  <Flag size={20} className="text-orange" /> Flagged Reviews
                 </h3>
                 <p style={{ color: 'var(--text3)', marginBottom: '16px', fontSize: '0.85rem' }}>
                   These are responses that users flagged as inaccurate or unhelpful.
@@ -234,7 +244,7 @@ export default function AdminPage() {
                     </div>
                   ))}
                   {flagged.length === 0 && (
-                    <p style={{ color: 'var(--text3)' }}>No flagged reviews yet. 🎉</p>
+                    <p style={{ color: 'var(--text3)' }}>No flagged reviews yet.</p>
                   )}
                 </div>
               </div>

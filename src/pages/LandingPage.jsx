@@ -106,9 +106,9 @@ export default function LandingPage() {
               </Link>
               <div className="hero-trust">
                 <div className="trust-checks">
-                  <span>✓ No signup</span>
-                  <span>✓ No credit card</span>
-                  <span>✓ Supports US, UK, CA, EU</span>
+                  <span>No signup</span>
+                  <span>No credit card</span>
+                  <span>Supports US, UK, CA, EU</span>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function LandingPage() {
       <section className="section" id="coverage">
         <div className="container-wide">
           <div className="section-header">
-            <div className="section-badge">📚 Global Legal Coverage</div>
+            <div className="section-badge">Global Legal Coverage</div>
             <h2 className="section-h2">What We Analyze</h2>
             <p className="section-sub">Now supporting US, UK, Canada, and European Union jurisdictions with region-specific citations.</p>
           </div>
@@ -190,7 +190,7 @@ export default function LandingPage() {
           <div className="how-grid-wrap">
             <div className="how-left">
               <div className="section-header" style={{ textAlign: 'left' }}>
-                <div className="section-badge">⚙️ Process</div>
+                <div className="section-badge">Process</div>
                 <h2 className="section-h2">How LegalCheck Works</h2>
                 <p className="section-sub" style={{ margin: '0' }}>Three steps from confusion to clarity. Every analysis cites specific statutes you can verify in your jurisdiction.</p>
               </div>
@@ -225,7 +225,7 @@ export default function LandingPage() {
         <div className="container-wide">
           <div className="accuracy-box">
             <div className="accuracy-content">
-              <div className="section-badge">🛡️ Methodology</div>
+              <div className="section-badge">Methodology</div>
               <h2 className="section-h2">Multi-Region Accuracy</h2>
               <p className="section-sub" style={{ textAlign: 'left', margin: '0 0 24px 0' }}>
                 LegalCheck uses localized knowledge layers to ensure the AI identifies the correct laws for your jurisdiction. We don't mix up US statutes with UK acts.
@@ -253,7 +253,7 @@ export default function LandingPage() {
                 <img src="/consultation.png" alt="Legal Consultation" className="acc-img" />
                 <div className="acc-glass-overlay">
                   <div className="security-seal">
-                    <div className="seal-icon">🔒</div>
+                    <div className="seal-icon"><Shield size={24} /></div>
                     <div className="seal-text">
                       <strong>SECURE & PRIVATE</strong>
                       <span>Global Privacy Standards</span>
@@ -290,12 +290,6 @@ export default function LandingPage() {
           </div>
           <div className="sources-note">
             <strong>Transparency commitment:</strong> Every verdict includes the specific statute or act section so you can independently verify it on government websites like <a href="https://www.legislation.gov.uk/" target="_blank" rel="noreferrer">Legislation.gov.uk</a> or <a href="https://uscode.house.gov/" target="_blank" rel="noreferrer">USCode.gov</a>.
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ Testimonial ═══ */}
-            </div>
           </div>
         </div>
       </section>
@@ -346,7 +340,7 @@ export default function LandingPage() {
             <p className="fcta-sub">Free, unlimited checks for US, UK, Canada & EU. No signup required.</p>
             <Link to="/check" className="btn btn-primary btn-lg">Analyze My Situation <ArrowRight size={20} /></Link>
             <div className="fcta-legal">
-              ⚠️ LegalCheck provides legal information, not legal advice. Always consult a licensed attorney for your specific situation.
+              DISCLAIMER: This analysis is provided for informational purposes only. It is not legal advice and does not create an attorney-client relationship. Laws vary by jurisdiction and are subject to change. Always consult a licensed attorney for your specific situation.
             </div>
           </div>
         </div>

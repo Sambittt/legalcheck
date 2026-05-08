@@ -6,7 +6,7 @@ const messages = [
   'Preparing your verdict...'
 ];
 
-export default function LoadingAnimation() {
+const LoadingAnimation = () => {
   const [idx, setIdx] = useState(0);
   const [progress, setProgress] = useState(0);
 
@@ -20,7 +20,7 @@ export default function LoadingAnimation() {
     <div className="loading-wrap">
       <div className="loading-spinner">
         <div className="spinner-ring" />
-        <div className="spinner-icon">⚖️</div>
+        <div className="spinner-icon"><Scale size={48} /></div>
       </div>
       <p className="loading-msg">{messages[idx]}</p>
       <div className="progress-bar">

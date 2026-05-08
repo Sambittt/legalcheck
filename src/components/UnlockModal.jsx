@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { validateGumroadLicense } from '../services/api';
 import { saveUserPlan } from '../services/firebase';
 import { useAuth } from '../context/AuthContext';
+import { Lightbulb, Check, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const SINGLE_PERMALINK = import.meta.env.VITE_GUMROAD_SINGLE_PERMALINK || 'xbqtvn';
 const YEARLY_PERMALINK = import.meta.env.VITE_GUMROAD_LIFETIME_PERMALINK || 'kussdz';
@@ -56,7 +57,7 @@ export default function UnlockModal({ onClose, onSuccess, situation, verdictData
         <button className="modal-close" onClick={onClose}>✕</button>
 
         <div className="modal-header">
-          <h2 className="modal-title">💡 Unlock the Full Report</h2>
+          <h2 className="modal-title"><Lightbulb size={24} className="text-accent" /> Unlock the Full Report</h2>
           <p className="modal-sub">Get the legal blueprint and find out how much this case is worth.</p>
         </div>
 
@@ -73,19 +74,19 @@ export default function UnlockModal({ onClose, onSuccess, situation, verdictData
         <div className="modal-plan-desc">
           {tab === 'single' ? (
             <ul className="modal-features">
-              <li>✅ Legal alternative for this situation</li>
-              <li>✅ Step-by-step legal method</li>
-              <li>✅ Lawsuit Valuation Engine unlock</li>
-              <li>✅ Potential settlement estimate</li>
-              <li>✅ One-time payment</li>
+              <li><Check size={14} className="text-green" /> Legal alternative for this situation</li>
+              <li><Check size={14} className="text-green" /> Step-by-step legal method</li>
+              <li><Check size={14} className="text-green" /> Lawsuit Valuation Engine unlock</li>
+              <li><Check size={14} className="text-green" /> Potential settlement estimate</li>
+              <li><Check size={14} className="text-green" /> One-time payment</li>
             </ul>
           ) : (
             <ul className="modal-features">
-              <li>✅ <strong>Unlimited</strong> reports & unlocks</li>
-              <li>✅ Full Lawsuit Valuation Engine</li>
-              <li>✅ Detailed damages & payout estimates</li>
-              <li>✅ Priority feature access</li>
-              <li>✅ Cancel anytime</li>
+              <li><Check size={14} className="text-green" /> <strong>Unlimited</strong> reports & unlocks</li>
+              <li><Check size={14} className="text-green" /> Full Lawsuit Valuation Engine</li>
+              <li><Check size={14} className="text-green" /> Detailed damages & payout estimates</li>
+              <li><Check size={14} className="text-green" /> Priority feature access</li>
+              <li><Check size={14} className="text-green" /> Cancel anytime</li>
             </ul>
           )}
         </div>
@@ -94,7 +95,7 @@ export default function UnlockModal({ onClose, onSuccess, situation, verdictData
         <div className="modal-step">
           <div className="step-badge">Step 1</div>
           <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={openGumroad}>
-            Buy on Gumroad →
+            Buy on Gumroad <ArrowRight size={18} />
           </button>
           <p className="modal-hint">You'll receive a license key by email after purchase.</p>
         </div>
@@ -116,12 +117,12 @@ export default function UnlockModal({ onClose, onSuccess, situation, verdictData
             onClick={handleValidate}
             disabled={loading || !licenseKey.trim()}
           >
-            {loading ? 'Validating...' : 'Activate & Unlock →'}
+            {loading ? 'Validating...' : 'Activate & Unlock'} <ArrowRight size={18} />
           </button>
         </div>
 
         <p className="modal-disclaimer">
-          🔒 Secure payment via Gumroad. Includes full Lawsuit Valuation Engine for your jurisdiction.
+          <ShieldCheck size={14} /> Secure payment via Gumroad. Includes full Lawsuit Valuation Engine for your jurisdiction.
         </p>
       </div>
     </div>

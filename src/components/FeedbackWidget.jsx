@@ -21,7 +21,7 @@ export default function FeedbackWidget({ situation, verdictText }) {
   if (state === 'positive') {
     return (
       <div className="feedback-box feedback-pos">
-        ✅ Thank you for your feedback!
+        Thank you for your feedback!
       </div>
     );
   }
@@ -53,8 +53,8 @@ export default function FeedbackWidget({ situation, verdictText }) {
   return (
     <div className="feedback-box">
       <span className="feedback-label">Was this helpful?</span>
-      <button className="feedback-btn feedback-yes" onClick={handlePositive}>✅ Yes</button>
-      <button className="feedback-btn feedback-no" onClick={handleNegative}>❌ No, this seems wrong</button>
+      <button className="feedback-btn feedback-yes" onClick={handlePositive}>Yes</button>
+      <button className="feedback-btn feedback-no" onClick={handleNegative}>No, this seems wrong</button>
     </div>
   );
 }
