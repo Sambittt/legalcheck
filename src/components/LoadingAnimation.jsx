@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Scale } from 'lucide-react';
 
 const messages = [
   'Analyzing your situation...',
@@ -29,4 +30,6 @@ const LoadingAnimation = () => {
       <p className="loading-sub">Usually takes 5–10 seconds</p>
     </div>
   );
-}
+};
+
+export default LoadingAnimation;
