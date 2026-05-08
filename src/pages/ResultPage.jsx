@@ -6,6 +6,21 @@ import FeedbackWidget from '../components/FeedbackWidget';
 import { getLegalAlternative } from '../services/api';
 import { saveCheck } from '../services/firebase';
 import { useAuth } from '../context/AuthContext';
+import { 
+  Download, 
+  ArrowRight, 
+  BarChart3, 
+  TrendingUp, 
+  FileText, 
+  DollarSign, 
+  Target, 
+  FolderOpen,
+  Zap,
+  Clock,
+  Briefcase,
+  AlertTriangle,
+  Scale
+} from 'lucide-react';
 
 export default function ResultPage() {
   const location = useLocation();
@@ -66,12 +81,12 @@ export default function ResultPage() {
               <h1 className="result-h1">AI Analysis Report</h1>
               <div style={{ display: 'flex', gap: '10px' }} className="no-print">
                 <button className="btn btn-secondary btn-sm" onClick={() => window.print()}>
-                  Download PDF →
+                  <Download size={14} /> Download PDF
                 </button>
                 <span className="plan-badge" style={{ background: 'var(--accent)', color: '#fff', border: 'none', display: 'flex', alignItems: 'center' }}>
                   {region} Law
                 </span>
-                <Link to="/check" className="btn btn-ghost btn-sm">New Analysis →</Link>
+                <Link to="/check" className="btn btn-ghost btn-sm">New Analysis <ArrowRight size={14} /></Link>
               </div>
             </div>
 
@@ -88,42 +103,42 @@ export default function ResultPage() {
                 </div>
                 <div className="pt-grid">
                   <div className="pt-item">
-                    <span className="pt-icon">📊</span>
+                    <span className="pt-icon"><BarChart3 size={20} /></span>
                     <div>
                       <h4>Case Strength Score</h4>
                       <p>Rated 1-100 with detailed strength/weakness breakdown</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">📈</span>
+                    <span className="pt-icon"><TrendingUp size={20} /></span>
                     <div>
                       <h4>Win Probability</h4>
                       <p>Percentage chance of winning based on {region} precedents</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">📝</span>
+                    <span className="pt-icon"><FileText size={20} /></span>
                     <div>
                       <h4>Ready-to-Send Demand Letter</h4>
                       <p>Professional letter you can copy, paste, and send today</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">💰</span>
+                    <span className="pt-icon"><DollarSign size={20} /></span>
                     <div>
                       <h4>Settlement Valuation</h4>
                       <p>Exact LOW / MID / HIGH dollar ranges for your case</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">🎯</span>
+                    <span className="pt-icon"><Target size={20} /></span>
                     <div>
                       <h4>Negotiation Playbook</h4>
                       <p>5-step tactical guide to maximize your outcome</p>
                     </div>
                   </div>
                   <div className="pt-item">
-                    <span className="pt-icon">📁</span>
+                    <span className="pt-icon"><FolderOpen size={20} /></span>
                     <div>
                       <h4>Similar Cases & Outcomes</h4>
                       <p>Real precedents showing what others won in your situation</p>
@@ -137,7 +152,7 @@ export default function ResultPage() {
             {verdictData.legalAlternativeExists && (
               <div className="alt-section">
                 <div className="alt-header">
-                  <span className="alt-icon">⚡</span>
+                  <span className="alt-icon"><Zap size={24} /></span>
                   <div>
                     <h2 className="alt-title">Premium Legal Intelligence Report</h2>
                     {verdictData.legalAlternativeTeaser && (
@@ -150,12 +165,12 @@ export default function ResultPage() {
                   <div className="alt-locked">
                     {isPremium ? (
                       <button className="btn btn-primary" onClick={fetchLegalAlt}>
-                        Generate Premium Report (Member Access) →
+                        Generate Premium Report (Member Access) <ArrowRight size={18} />
                       </button>
                     ) : (
                       <div className="alt-unlock-row">
                         <button className="btn btn-primary" onClick={() => setShowModal(true)}>
-                          Unlock Full Report for $2.99 →
+                          Unlock Full Report for $2.99 <ArrowRight size={18} />
                         </button>
                         <button className="btn btn-secondary" onClick={() => setShowModal(true)}>
                           Yearly Membership $24.99/yr — Unlimited Reports
@@ -186,7 +201,7 @@ export default function ResultPage() {
                     {/* Section 1: Case Strength Score */}
                     {legalAlt.caseStrength && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.05))', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)' }}>📊 Case Strength Score</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)', display: 'flex', alignItems: 'center', gap: '8px' }}><BarChart3 size={18} /> Case Strength Score</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.caseStrength}</p>
                       </div>
                     )}
@@ -194,7 +209,7 @@ export default function ResultPage() {
                     {/* Section 2: Win Probability */}
                     {legalAlt.winProbability && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.05))', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--green)' }}>📈 Win Probability</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--green)', display: 'flex', alignItems: 'center', gap: '8px' }}><TrendingUp size={18} /> Win Probability</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.winProbability}</p>
                       </div>
                     )}
@@ -202,7 +217,7 @@ export default function ResultPage() {
                     {/* Section 3: Similar Cases */}
                     {legalAlt.similarCases && (
                       <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--text)' }}>📁 Similar Cases & Outcomes</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '8px' }}><FolderOpen size={18} /> Similar Cases & Outcomes</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.similarCases}</p>
                       </div>
                     )}
@@ -213,7 +228,7 @@ export default function ResultPage() {
                     {legalAlt.demandLetter && (
                       <div className="premium-section" style={{ background: 'var(--bg2)', border: '2px solid var(--accent)', borderRadius: 'var(--r-lg)', padding: '24px', position: 'relative' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '8px' }}>
-                          <h4 className="premium-section-title" style={{ color: 'var(--accent-l)', margin: 0 }}>📝 Demand Letter Draft</h4>
+                          <h4 className="premium-section-title" style={{ color: 'var(--accent-l)', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}><FileText size={18} /> Demand Letter Draft</h4>
                           <button 
                             className="btn btn-ghost btn-sm" 
                             onClick={() => { navigator.clipboard.writeText(legalAlt.demandLetter); }}
@@ -233,7 +248,7 @@ export default function ResultPage() {
                     {/* Section 5: Evidence Checklist */}
                     {legalAlt.evidenceChecklist && (
                       <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--orange)' }}>📋 Evidence Checklist</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: '8px' }}><FileText size={18} /> Evidence Checklist</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.evidenceChecklist}</p>
                       </div>
                     )}
@@ -241,7 +256,7 @@ export default function ResultPage() {
                     {/* Section 6: Negotiation Playbook */}
                     {legalAlt.negotiationPlaybook && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.06), rgba(239,68,68,0.03))', border: '1px solid rgba(249,115,22,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--orange)' }}>🎯 Negotiation Playbook</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--orange)', display: 'flex', alignItems: 'center', gap: '8px' }}><Target size={18} /> Negotiation Playbook</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.negotiationPlaybook}</p>
                       </div>
                     )}
@@ -251,7 +266,7 @@ export default function ResultPage() {
                     {/* Section 7: Risk Matrix */}
                     {legalAlt.riskMatrix && (
                       <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⚖️ Risk Matrix</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)', display: 'flex', alignItems: 'center', gap: '8px' }}><Scale size={18} /> Risk Matrix</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.riskMatrix}</p>
                       </div>
                     )}
@@ -259,7 +274,7 @@ export default function ResultPage() {
                     {/* Section 8: Deadlines */}
                     {legalAlt.deadlines && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(239,68,68,0.08), rgba(249,115,22,0.05))', border: '1px solid rgba(239,68,68,0.3)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⏰ Deadline Countdown</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)', display: 'flex', alignItems: 'center', gap: '8px' }}><Clock size={18} /> Deadline Countdown</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.deadlines}</p>
                       </div>
                     )}
@@ -269,7 +284,7 @@ export default function ResultPage() {
                     {/* Section 9: Settlement Value */}
                     {legalAlt.settlementValue && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.06))', border: '2px solid rgba(34,197,94,0.4)', borderRadius: 'var(--r-lg)', padding: '28px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--green)', fontSize: '1rem' }}>💰 Estimated Settlement Value</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--green)', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}><DollarSign size={18} /> Estimated Settlement Value</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line', fontSize: '1rem', fontWeight: '500' }}>{legalAlt.settlementValue}</p>
                       </div>
                     )}
@@ -277,7 +292,7 @@ export default function ResultPage() {
                     {/* Section 10: Lawyer Cost */}
                     {legalAlt.lawyerCost && (
                       <div className="premium-section" style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--text)' }}>💼 Lawyer Cost Estimator</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--text)', display: 'flex', alignItems: 'center', gap: '8px' }}><Briefcase size={18} /> Lawyer Cost Estimator</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.lawyerCost}</p>
                       </div>
                     )}
@@ -287,7 +302,7 @@ export default function ResultPage() {
                     {/* Section 11: Step-by-Step Resolution */}
                     {legalAlt.theWay && (
                       <div className="premium-section" style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.04))', border: '1px solid rgba(59,130,246,0.2)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)' }}>🔓 Step-by-Step Legal Resolution</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--accent-l)', display: 'flex', alignItems: 'center', gap: '8px' }}><Zap size={18} /> Step-by-Step Legal Resolution</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.theWay}</p>
                       </div>
                     )}
@@ -295,7 +310,7 @@ export default function ResultPage() {
                     {/* Section 12: Common Mistakes */}
                     {legalAlt.watchOut && (
                       <div className="premium-section" style={{ background: 'rgba(239,68,68,0.04)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 'var(--r-lg)', padding: '24px' }}>
-                        <h4 className="premium-section-title" style={{ color: 'var(--red)' }}>⚠️ Common Mistakes to Avoid</h4>
+                        <h4 className="premium-section-title" style={{ color: 'var(--red)', display: 'flex', alignItems: 'center', gap: '8px' }}><AlertTriangle size={18} /> Common Mistakes to Avoid</h4>
                         <p className="card-body" style={{ whiteSpace: 'pre-line' }}>{legalAlt.watchOut}</p>
                       </div>
                     )}

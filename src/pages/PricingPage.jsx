@@ -32,6 +32,7 @@ const YEARLY_FEATURES = [
 ];
 
 import { useEffect } from 'react';
+import { CreditCard, Star, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function PricingPage() {
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function PricingPage() {
     <div className="pricing-page">
       <div className="container" style={{ maxWidth: '1040px' }}>
         <div className="pricing-header">
-          <div className="section-badge">💰 Simple Pricing</div>
+          <div className="section-badge">Simple Pricing</div>
           <h1 className="pricing-h1">Know your rights for free.<br />Unlock the full legal strategy with Premium.</h1>
           <p className="pricing-sub">12-section intelligence reports · Demand letters · Settlement valuations · Negotiation playbooks</p>
         </div>
@@ -77,7 +78,7 @@ export default function PricingPage() {
               ))}
             </ul>
             <a href={SINGLE_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-              Get Single Unlock →
+              Get Single Unlock <ArrowRight size={18} />
             </a>
             <p className="pricing-note">One-time. Instant access via Gumroad.</p>
           </div>
@@ -94,7 +95,7 @@ export default function PricingPage() {
               ))}
             </ul>
             <a href={YEARLY_LINK} target="_blank" rel="noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', display: 'flex' }}>
-              Get Premium Yearly →
+              Get Premium Yearly <ArrowRight size={18} />
             </a>
             <p className="pricing-note">Unlock everything. Best for professionals & active disputes.</p>
           </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../components/LoadingAnimation';
 import { getVerdict } from '../services/api';
+import { Globe, Shield, Zap, BookOpen, AlertTriangle } from 'lucide-react';
 
 const EXAMPLES = [
   'My landlord entered my apartment without 24-hour notice and threatened to raise my rent when I complained.',
@@ -10,10 +11,10 @@ const EXAMPLES = [
 ];
 
 const REGIONS = [
-  { id: 'USA', name: 'United States', flag: '🇺🇸' },
-  { id: 'CAN', name: 'Canada', flag: '🇨🇦' },
-  { id: 'UK', name: 'United Kingdom', flag: '🇬🇧' },
-  { id: 'EU', name: 'Europe (EU)', flag: '🇪🇺' }
+  { id: 'USA', name: 'United States' },
+  { id: 'CAN', name: 'Canada' },
+  { id: 'UK', name: 'United Kingdom' },
+  { id: 'EU', name: 'Europe (EU)' }
 ];
 
 export default function CheckPage() {
@@ -67,7 +68,7 @@ export default function CheckPage() {
         <div className="check-grid">
           {/* Main Form */}
           <div className="check-form-area fade-in-up">
-            <div className="section-badge" style={{ marginBottom: '16px' }}>⚖️ Secure Analysis Portal</div>
+            <div className="section-badge" style={{ marginBottom: '16px' }}>Secure Analysis Portal</div>
             <h1 className="check-h1">Describe what happened</h1>
             <p className="check-sub">
               Our AI will cross-reference your situation with {region === 'USA' ? 'federal and state' : 'national and regional'} law to identify potential violations.
@@ -85,7 +86,7 @@ export default function CheckPage() {
                       className={`region-btn ${region === r.id ? 'active' : ''}`}
                       onClick={() => setRegion(r.id)}
                     >
-                      <span className="region-flag">{r.flag}</span>
+                      <Globe size={14} className="region-icon" />
                       <span className="region-name">{r.name}</span>
                     </button>
                   ))}
@@ -115,9 +116,9 @@ export default function CheckPage() {
               </button>
 
               <div className="check-trust-footer">
-                <span className="trust-item">🔒 Encrypted</span>
-                <span className="trust-item">⚡ Instant Result</span>
-                <span className="trust-item">📜 {region === 'USA' ? 'Statute' : 'Code'}-Backed</span>
+                <span className="trust-item"><Shield size={14} /> Encrypted</span>
+                <span className="trust-item"><Zap size={14} /> Instant Result</span>
+                <span className="trust-item"><BookOpen size={14} /> {region === 'USA' ? 'Statute' : 'Code'}-Backed</span>
               </div>
             </form>
 

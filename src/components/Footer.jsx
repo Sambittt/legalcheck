@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
+import { Scale } from 'lucide-react';
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="container-wide footer-inner">
-        <Link to="/" className="footer-logo">⚖️ LegalCheck</Link>
+        <Link to="/" className="footer-logo">
+          <Scale size={18} className="logo-icon" />
+          LegalCheck
+        </Link>
         <div className="footer-links">
           <Link to="/" className="footer-link">Home</Link>
           <Link to="/check" className="footer-link">Check</Link>

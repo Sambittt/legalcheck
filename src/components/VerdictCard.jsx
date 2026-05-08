@@ -1,3 +1,5 @@
+import { ClipboardList, Scale, CheckSquare, Briefcase } from 'lucide-react';
+
 export default function VerdictCard({ verdictData }) {
   if (!verdictData) return null;
 
@@ -34,16 +36,16 @@ export default function VerdictCard({ verdictData }) {
 
       {/* What's happening */}
       <div className="result-card">
-        <h3 className="card-section-title">📋 What's Happening</h3>
+        <h3 className="card-section-title"><ClipboardList size={18} /> What's Happening</h3>
         <p className="card-body">{verdictData.whatsHappening}</p>
         <div className="divider" />
-        <h3 className="card-section-title">⚖️ The Law Says</h3>
+        <h3 className="card-section-title"><Scale size={18} /> The Law Says</h3>
         <p className="card-body law-text">{verdictData.theLawSays}</p>
       </div>
 
       {/* Action steps */}
       <div className="result-card">
-        <h3 className="card-section-title">✅ Your Action Steps</h3>
+        <h3 className="card-section-title"><CheckSquare size={18} /> Your Action Steps</h3>
         <div className="steps-list">
           {verdictData.actionSteps.map((step, i) => (
             <div key={i} className="step-item">
@@ -54,7 +56,7 @@ export default function VerdictCard({ verdictData }) {
         </div>
 
         <div className="divider" />
-        <h3 className="card-section-title">👨‍💼 Do You Need a Lawyer?</h3>
+        <h3 className="card-section-title"><Briefcase size={18} /> Do You Need a Lawyer?</h3>
         <p className="card-body">{verdictData.needLawyer}</p>
       </div>
     </div>

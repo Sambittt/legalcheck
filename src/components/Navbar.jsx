@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { signInWithGoogle, signOutUser } from '../services/firebase';
+import { Scale } from 'lucide-react';
 
 export default function Navbar() {
   const { user, userPlan, isAdmin } = useAuth();
@@ -23,7 +24,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container-wide navbar-inner">
         <Link to="/" className="nav-logo">
-          <span className="logo-icon">⚖️</span>
+          <Scale size={20} className="logo-icon" />
           LegalCheck
         </Link>
 

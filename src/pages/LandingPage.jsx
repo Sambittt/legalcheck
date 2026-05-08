@@ -2,16 +2,34 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { signInWithGoogle } from '../services/firebase';
+import { 
+  Home, 
+  Briefcase, 
+  Hospital, 
+  ShoppingCart, 
+  ShieldCheck, 
+  CreditCard, 
+  Database, 
+  Building2, 
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+  Shield,
+  Search,
+  BookOpen,
+  Scale
+} from 'lucide-react';
 
 const CATEGORIES = [
-  { icon: '🏠', name: 'Landlord & Tenant Rights', desc: 'Illegal evictions, security deposit disputes, lease violations, tenant rights, and landlord entry laws.', laws: 'US Federal, UK Housing Act, CA RTA, EU Codes' },
-  { icon: '💼', name: 'Employment & Labor Law', desc: 'Wrongful termination, unpaid wages, workplace harassment, discrimination, and FMLA/leave rights.', laws: 'FLSA, UK Employment Act, Canada Labor Code' },
-  { icon: '🏥', name: 'Medical & Healthcare Rights', desc: 'Medical billing fraud, surprise bills, HIPAA violations, insurance claim denials, and patient privacy.', laws: 'HIPAA, GDPR, NHI Acts' },
-  { icon: '🚗', name: 'Consumer Protection Law', desc: 'Consumer fraud, lemon laws, warranty disputes, illegal debt collection, and refund rights.', laws: 'FTC, Consumer Rights Act, Australian Consumer Law' },
-  { icon: '👮', name: 'Civil Rights & Discrimination', desc: 'Police misconduct, ADA compliance, racial discrimination, voting rights, and constitutional law.', laws: 'Civil Rights Act, UK Equality Act' },
-  { icon: '💳', name: 'Debt, Banking & Credit', desc: 'Illegal credit card fees, FDCPA violations, credit report errors, and predatory lending.', laws: 'FDCPA, Banking Directives' },
-  { icon: '📱', name: 'Digital Privacy & Data Law', desc: 'Data breaches, illegal recording, online surveillance, GDPR compliance, and biometric privacy.', laws: 'GDPR, CCPA, PIPEDA' },
-  { icon: '🏪', name: 'Small Business & Contracts', desc: 'Breach of contract, NDA disputes, startup legal help, trademark infringement, and partnership laws.', laws: 'UCC, UK Companies Act' }
+  { icon: <Home size={20} />, name: 'Landlord & Tenant Rights', desc: 'Illegal evictions, security deposit disputes, lease violations, tenant rights, and landlord entry laws.', laws: 'US Federal, UK Housing Act, CA RTA, EU Codes' },
+  { icon: <Briefcase size={20} />, name: 'Employment & Labor Law', desc: 'Wrongful termination, unpaid wages, workplace harassment, discrimination, and FMLA/leave rights.', laws: 'FLSA, UK Employment Act, Canada Labor Code' },
+  { icon: <Hospital size={20} />, name: 'Medical & Healthcare Rights', desc: 'Medical billing fraud, surprise bills, HIPAA violations, insurance claim denials, and patient privacy.', laws: 'HIPAA, GDPR, NHI Acts' },
+  { icon: <ShoppingCart size={20} />, name: 'Consumer Protection Law', desc: 'Consumer fraud, lemon laws, warranty disputes, illegal debt collection, and refund rights.', laws: 'FTC, Consumer Rights Act, Australian Consumer Law' },
+  { icon: <ShieldCheck size={20} />, name: 'Civil Rights & Discrimination', desc: 'Police misconduct, ADA compliance, racial discrimination, voting rights, and constitutional law.', laws: 'Civil Rights Act, UK Equality Act' },
+  { icon: <CreditCard size={20} />, name: 'Debt, Banking & Credit', desc: 'Illegal credit card fees, FDCPA violations, credit report errors, and predatory lending.', laws: 'FDCPA, Banking Directives' },
+  { icon: <Database size={20} />, name: 'Digital Privacy & Data Law', desc: 'Data breaches, illegal recording, online surveillance, GDPR compliance, and biometric privacy.', laws: 'GDPR, CCPA, PIPEDA' },
+  { icon: <Building2 size={20} />, name: 'Small Business & Contracts', desc: 'Breach of contract, NDA disputes, startup legal help, trademark infringement, and partnership laws.', laws: 'UCC, UK Companies Act' }
 ];
 
 const STATS = [
@@ -73,7 +91,7 @@ export default function LandingPage() {
           <div className="hero-content">
             <div className="hero-badge">
               <span className="badge-dot" />
-              <span>Multi-Region AI • Now with Lawsuit Valuation Engine 💵</span>
+              <span>Multi-Region AI Analysis Engine</span>
             </div>
             <h1 className="hero-h1">
               Your Free <span className="hero-accent">AI Legal Assistant</span>
@@ -105,16 +123,16 @@ export default function LandingPage() {
               </div>
               <div className="preview-body">
                 <div className="preview-verdict">
-                  <span className="pv-emoji">🔴</span>
+                  <AlertCircle size={18} className="pv-icon" />
                   <span className="pv-text">VERDICT: Likely Illegal</span>
                 </div>
                 <div className="preview-law">
-                  <span className="pl-label">⚖️ LAW:</span>
+                  <Scale size={16} className="pl-icon" />
                   <span className="pl-text">Employment Rights Act 1996, Section 1</span>
                 </div>
                 <div className="preview-sev">
-                  <span className="ps-label">🚨 SEVERITY:</span>
-                  <span className="ps-badge">High</span>
+                  <Clock size={16} className="ps-icon" />
+                  <span className="ps-badge">Priority High</span>
                 </div>
                 <div className="preview-steps">
                   <div className="ps-step"><span className="ps-num">1</span> Request written particulars</div>
@@ -214,17 +232,17 @@ export default function LandingPage() {
               </p>
               <div className="accuracy-grid">
                 <div className="acc-item">
-                  <div className="acc-icon">🌍</div>
+                  <div className="acc-icon"><Shield size={24} /></div>
                   <h4>Jurisdiction Awareness</h4>
                   <p>When you select a region, the AI is constrained to cite only laws valid within that specific territory (e.g. GDPR for EU).</p>
                 </div>
                 <div className="acc-item">
-                  <div className="acc-icon">⚖️</div>
+                  <div className="acc-icon"><Scale size={24} /></div>
                   <h4>Specific Statute Matching</h4>
                   <p>We target the exact act or code section (e.g. 42 U.S.C. § 3604 or Section 1 of the Employment Rights Act).</p>
                 </div>
                 <div className="acc-item">
-                  <div className="acc-icon">🔍</div>
+                  <div className="acc-icon"><Search size={24} /></div>
                   <h4>Zero-Hallucination Guardrails</h4>
                   <p>Strict temperature settings prevent the AI from "inventing" laws. If it's not in the database, it's not cited.</p>
                 </div>
@@ -257,14 +275,14 @@ export default function LandingPage() {
       <section className="section" id="sources">
         <div className="container">
           <div className="section-header">
-            <div className="section-badge">🔍 Verified Sources</div>
+            <div className="section-badge">Verified Sources</div>
             <h2 className="section-h2">Global Legal References</h2>
             <p className="section-sub">Our AI is trained on authoritative government databases across multiple continents.</p>
           </div>
           <div className="sources-grid">
             {SOURCES.map((s, i) => (
               <a key={i} href={s.url} target="_blank" rel="noreferrer" className="source-card">
-                <div className="sc-icon">📖</div>
+                <div className="sc-icon"><BookOpen size={18} /></div>
                 <div className="sc-name">{s.name}</div>
                 <div className="sc-link">View source ↗</div>
               </a>
@@ -286,7 +304,7 @@ export default function LandingPage() {
       <section className="section" id="faq">
         <div className="container">
           <div className="section-header">
-            <div className="section-badge">⚖️ Common Questions</div>
+            <div className="section-badge">Common Questions</div>
             <h2 className="section-h2">Is it Illegal? Frequently Asked Questions</h2>
             <p className="section-sub">Quick answers to common legal situations analyzed by our AI Legal Assistant.</p>
           </div>
@@ -323,10 +341,10 @@ export default function LandingPage() {
       <section className="section">
         <div className="container">
           <div className="final-cta">
-            <div className="fcta-badge">⚖️</div>
+            <div className="fcta-badge"><Scale size={48} /></div>
             <h2 className="fcta-h2">Don't wonder if it's illegal.<br />Find out in 30 seconds.</h2>
             <p className="fcta-sub">Free, unlimited checks for US, UK, Canada & EU. No signup required.</p>
-            <Link to="/check" className="btn btn-primary btn-lg">Analyze My Situation →</Link>
+            <Link to="/check" className="btn btn-primary btn-lg">Analyze My Situation <ArrowRight size={20} /></Link>
             <div className="fcta-legal">
               ⚠️ LegalCheck provides legal information, not legal advice. Always consult a licensed attorney for your specific situation.
             </div>
