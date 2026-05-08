@@ -10,31 +10,47 @@ export default function AdminPage() {
   const [flagged, setFlagged] = useState([]);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
     async function fetchAll() {
       if (!isAdmin) return;
+      setError('');
       try {
-        // Fetch recent checks
-        const checksQ = query(collection(db, 'checks'), orderBy('createdAt', 'desc'), limit(20));
-        const checksSnap = await getDocs(checksQ);
-        const recentChecks = checksSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        // Fetch recent checks (try with orderBy, fallback without)
+        let recentChecks = [];
+        try {
+          const checksQ = query(collection(db, 'checks'), orderBy('createdAt', 'desc'), limit(20));
+          const checksSnap = await getDocs(checksQ);
+          recentChecks = checksSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        } catch {
+          // Fallback: fetch without ordering (index might not exist yet)
+          const checksSnap = await getDocs(collection(db, 'checks'));
+          recentChecks = checksSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        }
 
-        // Fetch flagged reviews
-        const flaggedQ = query(collection(db, 'flagged_responses'), orderBy('flaggedAt', 'desc'), limit(20));
-        const flaggedSnap = await getDocs(flaggedQ);
-        const flaggedItems = flaggedSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        // Fetch flagged reviews (try with orderBy, fallback without)
+        let flaggedItems = [];
+        try {
+          const flaggedQ = query(collection(db, 'flagged_responses'), orderBy('flaggedAt', 'desc'), limit(20));
+          const flaggedSnap = await getDocs(flaggedQ);
+          flaggedItems = flaggedSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        } catch {
+          const flaggedSnap = await getDocs(collection(db, 'flagged_responses'));
+          flaggedItems = flaggedSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        }
 
         // Fetch users
         const usersSnap = await getDocs(collection(db, 'users'));
         const userItems = usersSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 
-        setStats({ totalChecks: checksSnap.size, recent: recentChecks });
+        setStats({ totalChecks: recentChecks.length, recent: recentChecks });
         setFlagged(flaggedItems);
         setUsers(userItems);
       } catch (err) {
         console.error('Error fetching admin data:', err);
+        setError(err.message || 'Failed to load admin data. Check Firestore rules.');
       } finally {
         setLoading(false);
       }
@@ -94,6 +110,13 @@ export default function AdminPage() {
             Welcome back, <strong>{user.displayName || user.email}</strong>. Full premium access is active.
           </p>
         </div>
+
+        {/* Error Banner */}
+        {error && (
+          <div className="error-banner" style={{ marginBottom: '24px' }}>
+            ⚠️ {error}
+          </div>
+        )}
 
         {/* Stats Row */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px', marginBottom: '40px' }}>
