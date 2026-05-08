@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const isActive = (path) => location.pathname === path;
 
-  // Close mobile menu on route change or handle scroll lock
+  // Handle Scroll Lock
   useEffect(() => {
     if (mobileMenu) {
       document.body.style.overflow = 'hidden';
@@ -20,15 +20,16 @@ export default function Navbar() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [mobileMenu]);
 
+  // Close menu on route change
   useEffect(() => {
     setMobileMenu(false);
   }, [location.pathname]);
 
   return (
-    <nav className="navbar" style={{ zIndex: mobileMenu ? 3000 : 1000 }}>
+    <nav className="navbar">
       <div className="container navbar-inner">
-        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ position: 'relative', zIndex: 2700 }}>
-          <Scale className="logo-icon" size={24} />
+        <Link to="/" className="nav-logo" style={{ zIndex: 6000 }}>
+          <Scale className="logo-icon" size={28} color="var(--accent)" />
           <span>LegalCheck</span>
         </Link>
 
@@ -42,26 +43,33 @@ export default function Navbar() {
           
           <div style={{ width: '1px', height: '24px', background: 'var(--border)', margin: '0 8px' }} />
 
-          <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          <button onClick={toggleTheme} className="btn btn-ghost" style={{ padding: '8px' }}>
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           
-          <Link to="/check" className="btn btn-primary btn-sm">Start Analysis</Link>
+          <Link to="/check" className="btn btn-primary" style={{ padding: '10px 24px' }}>Start Analysis</Link>
         </div>
 
-        {/* Mobile Toggle Container */}
-        <div className="mobile-only" style={{ gap: '8px', alignItems: 'center', position: 'relative', zIndex: 2700 }}>
-          <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-          <button 
-            onClick={() => setMobileMenu(!mobileMenu)} 
-            className="btn btn-ghost" 
-            style={{ padding: '8px', cursor: 'pointer' }}
-            aria-label="Toggle Menu"
-          >
-            {mobileMenu ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        {/* Mobile Toggle - FORCE CLICKABLE */}
+        <div 
+          className="mobile-only" 
+          onClick={() => {
+            console.log('Mobile menu toggled');
+            setMobileMenu(!mobileMenu);
+          }}
+          style={{ 
+            display: 'none', 
+            gap: '12px', 
+            alignItems: 'center', 
+            zIndex: 6000, 
+            padding: '10px',
+            cursor: 'pointer',
+            WebkitTapHighlightColor: 'transparent'
+          }}
+        >
+          <div style={{ color: 'var(--text)' }}>
+            {mobileMenu ? <X size={32} /> : <Menu size={32} />}
+          </div>
         </div>
       </div>
 
@@ -75,8 +83,8 @@ export default function Navbar() {
             <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
             <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
             
-            <Link to="/check" className="btn btn-primary" style={{ marginTop: '24px', width: '100%', justifyContent: 'center' }}>
-              Start Free Analysis <ArrowRight size={18} />
+            <Link to="/check" className="btn btn-primary btn-lg" style={{ marginTop: '40px', width: '100%', justifyContent: 'center' }}>
+              Start Free Analysis <ArrowRight size={24} />
             </Link>
           </div>
         </div>
