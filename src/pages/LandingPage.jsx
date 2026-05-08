@@ -47,66 +47,60 @@ export default function LandingPage() {
   return (
     <div className="landing-page">
       {/* ═══ Hero ═══ */}
-      <section className="hero">
-        <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")' }} />
+      <section className="hero" style={{ paddingTop: '200px', paddingBottom: '140px' }}>
+        <div className="hero-mesh" style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 30%, rgba(var(--accent-rgb), 0.15), transparent 50%), radial-gradient(circle at 30% 70%, rgba(var(--green-rgb), 0.05), transparent 50%)', zIndex: -1 }} />
+        <div className="hero-img-bg" style={{ backgroundImage: 'url("/courtroom.png")', opacity: 0.2 }} />
         <div className="hero-gradient" />
-        <div className="container">
-          <div className="fade-in-up" style={{ maxWidth: '800px' }}>
-            <div className="section-badge"><Scale size={14} /> AI-Powered Legal Intelligence</div>
-            <h1 className="hero-h1">
-              Know Your Rights.<br />
-              <span className="hero-accent">Get Your Settlement.</span>
-            </h1>
-            <p className="hero-sub">
-              Professional legal analysis for US, UK, Canada, and EU law. Cross-reference actual statutes, identify violations, and estimate your potential payout in seconds.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <Link to="/check" className="btn btn-primary btn-lg">Start Free Analysis <ArrowRight size={20} /></Link>
-              <Link to="/articles" className="btn btn-secondary btn-lg">View Case Studies</Link>
-            </div>
-            <div style={{ display: 'flex', gap: '32px', marginTop: '48px', color: 'var(--text3)', fontSize: '0.9rem' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> No signup required</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> 100% Private & Secure</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><CheckCircle2 size={16} className="text-green" /> US, UK, CA, EU Law</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ Stats/Trust Section ═══ */}
-      <section style={{ padding: '80px 0', background: 'var(--bg2)', borderY: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
-            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
-                <Globe size={20} className="text-accent" />
+        
+        <div className="container" style={{ position: 'relative' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+            <div className="fade-in-up">
+              <div className="section-badge" style={{ background: 'rgba(var(--accent-rgb), 0.1)', borderColor: 'rgba(var(--accent-rgb), 0.2)', color: 'var(--accent)' }}>
+                <Scale size={14} /> Global AI Legal Standard
               </div>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>4</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Global Regions</div>
+              <h1 className="hero-h1" style={{ fontSize: '5.5rem', marginBottom: '32px' }}>
+                Legal Intelligence <br />
+                <span className="hero-accent" style={{ background: 'linear-gradient(90deg, var(--accent), #60a5fa)', WebkitBackgroundClip: 'text', color: 'transparent' }}>Redefined.</span>
+              </h1>
+              <p className="hero-sub" style={{ fontSize: '1.4rem', lineHeight: '1.6', marginBottom: '48px', color: 'var(--text2)' }}>
+                The world's most advanced AI engine for immediate statutory analysis. Get a clear verdict and settlement valuation in under 30 seconds.
+              </p>
+              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                <Link to="/check" className="btn btn-primary btn-lg" style={{ padding: '20px 48px', borderRadius: '100px' }}>Analyze Case <ArrowRight size={20} /></Link>
+                <Link to="/articles" className="btn btn-secondary btn-lg" style={{ padding: '20px 48px', borderRadius: '100px' }}>View Outcomes</Link>
+              </div>
+              
+              <div style={{ display: 'flex', gap: '32px', marginTop: '60px', color: 'var(--text3)', fontSize: '0.9rem', fontWeight: 600 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="text-green" /> US, UK, CA, EU Support</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Shield size={18} className="text-accent" /> Privacy Guaranteed</div>
+              </div>
             </div>
 
-            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
-                <TrendingUp size={20} className="text-green" />
+            <div className="hero-visual" style={{ position: 'relative' }}>
+              <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', transform: 'rotate(2deg)', boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 2 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                  <div style={{ fontWeight: 800, color: 'var(--text3)', fontSize: '0.75rem', textTransform: 'uppercase' }}>Current Analysis</div>
+                  <div className="status-dot green" />
+                </div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '12px' }}>Wrongful Termination Case</div>
+                <div style={{ height: '8px', background: 'var(--bg3)', borderRadius: '100px', overflow: 'hidden', marginBottom: '24px' }}>
+                  <div className="progress-fill" style={{ width: '85%' }} />
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div style={{ background: 'var(--bg2)', padding: '16px', borderRadius: 'var(--r)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginBottom: '4px' }}>EST. PAYOUT</div>
+                    <div style={{ fontWeight: 800, color: 'var(--green)' }}>$8,500</div>
+                  </div>
+                  <div style={{ background: 'var(--bg2)', padding: '16px', borderRadius: 'var(--r)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginBottom: '4px' }}>VERDICT</div>
+                    <div style={{ fontWeight: 800, color: 'var(--accent)' }}>Likely Illegal</div>
+                  </div>
+                </div>
               </div>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--green), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>$15M+</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Payouts Identified</div>
-            </div>
-
-            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
-                <Users size={20} className="text-accent" />
-              </div>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>300k+</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Cases Analyzed</div>
-            </div>
-
-            <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center', transition: 'transform 0.3s' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--bg3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', border: '1px solid var(--border)' }}>
-                <CheckCircle2 size={20} className="text-accent" />
-              </div>
-              <div style={{ fontSize: '2.5rem', fontWeight: 900, letterSpacing: '-0.05em', background: 'linear-gradient(to right, var(--accent), var(--accent-l))', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', marginBottom: '8px' }}>98%</div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Statute Accuracy</div>
+              
+              {/* Decorative elements */}
+              <div style={{ position: 'absolute', top: '-40px', right: '-20px', width: '200px', height: '200px', background: 'var(--accent)', filter: 'blur(100px)', opacity: 0.1, zIndex: 1 }} />
+              <div style={{ position: 'absolute', bottom: '-40px', left: '-20px', width: '200px', height: '200px', background: 'var(--green)', filter: 'blur(100px)', opacity: 0.1, zIndex: 1 }} />
             </div>
           </div>
         </div>
@@ -172,6 +166,38 @@ export default function LandingPage() {
                 </div>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text3)' }}>Average identified payout for wrongful termination cases in the UK.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ Stats/Trust Section (Relocated) ═══ */}
+      <section style={{ padding: '100px 0', background: 'var(--bg)', borderY: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+        <div className="container">
+          <div className="section-header">
+            <div className="section-badge">Global Impact</div>
+            <h2 className="section-h2">Trust Verified by Numbers</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px' }}>
+            <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center' }}>
+              <Globe size={24} className="text-accent" style={{ marginBottom: '16px' }} />
+              <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)' }}>4</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Regions</div>
+            </div>
+            <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center' }}>
+              <TrendingUp size={24} className="text-green" style={{ marginBottom: '16px' }} />
+              <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)' }}>$15M</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Payouts Identified</div>
+            </div>
+            <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center' }}>
+              <Users size={24} className="text-accent" style={{ marginBottom: '16px' }} />
+              <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)' }}>300k</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Users Helped</div>
+            </div>
+            <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', textAlign: 'center' }}>
+              <CheckCircle2 size={24} className="text-accent" style={{ marginBottom: '16px' }} />
+              <div style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)' }}>98%</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Precision</div>
             </div>
           </div>
         </div>
