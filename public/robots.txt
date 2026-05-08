@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /result
+
+Sitemap: https://legal.sambit.page/sitemap.xml
+
+# LegalCheck - AI Legal Assistant
+# Covers: USA, UK, Canada, EU
