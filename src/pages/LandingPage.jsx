@@ -60,11 +60,11 @@ export default function LandingPage() {
               <div className="section-badge" style={{ background: 'rgba(var(--accent-rgb), 0.1)', borderColor: 'rgba(var(--accent-rgb), 0.2)', color: 'var(--accent)' }}>
                 <Scale size={14} /> Global AI Legal Standard
               </div>
-              <h1 className="hero-h1" style={{ marginBottom: '32px' }}>
+              <h1 className="hero-h1">
                 Legal Intelligence <br />
                 <span className="hero-accent">Redefined.</span>
               </h1>
-              <p className="hero-sub" style={{ fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '48px', color: 'var(--text2)', maxWidth: '600px' }}>
+              <p className="hero-sub" style={{ color: 'var(--text2)', maxWidth: '600px' }}>
                 The world's most advanced AI engine for immediate statutory analysis. Get a clear verdict and settlement valuation in under 30 seconds.
               </p>
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -127,7 +127,7 @@ export default function LandingPage() {
       {/* ═══ Problem/Solution (Process) ═══ */}
       <section className="section" style={{ background: 'var(--bg2)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+          <div className="grid-2" style={{ gap: '60px', alignItems: 'center' }}>
             <div>
               <div className="section-badge">How it works</div>
               <h2 className="section-h2" style={{ textAlign: 'left' }}>Three Steps to Clarity</h2>

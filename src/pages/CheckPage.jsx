@@ -53,12 +53,12 @@ export default function CheckPage() {
   return (
     <div className="check-page section">
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '60px', alignItems: 'start' }}>
+        <div className="grid-sidebar" style={{ gap: '60px', alignItems: 'start' }}>
           
           <div className="fade-in-up">
             <div className="section-header" style={{ textAlign: 'left', margin: '0 0 40px 0' }}>
               <div className="section-badge">Legal Situation Portal</div>
-              <h1 className="section-h2" style={{ fontSize: '2.5rem' }}>Describe What Happened</h1>
+              <h1 className="section-h2">Describe What Happened</h1>
               <p className="section-sub">Be as detailed as possible. Include dates, specific parties, and any financial losses involved.</p>
             </div>
 

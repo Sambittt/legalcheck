@@ -50,7 +50,7 @@ export default function PricingPage() {
             <div style={{ marginBottom: '32px' }}>
               <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '8px' }}>Basic</div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$0</span>
+                <span style={{ fontSize: '2rem', fontWeight: 900 }}>$0</span>
                 <span style={{ color: 'var(--text3)' }}>/forever</span>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function PricingPage() {
                 <Zap size={20} className="text-accent" /> Premium
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$2.99</span>
+                <span style={{ fontSize: '2rem', fontWeight: 900 }}>$2.99</span>
                 <span style={{ color: 'var(--text3)' }}>/per report</span>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function PricingPage() {
                 <Crown size={20} className="text-orange" /> Unlimited
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-                <span style={{ fontSize: '2.5rem', fontWeight: 900 }}>$24.99</span>
+                <span style={{ fontSize: '2rem', fontWeight: 900 }}>$24.99</span>
                 <span style={{ color: 'var(--text3)' }}>/year</span>
               </div>
             </div>

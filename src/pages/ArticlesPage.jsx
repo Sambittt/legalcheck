@@ -197,8 +197,8 @@ const ArticlesPage = () => {
               <button onClick={() => setSelectedCase(null)} style={{ position: 'absolute', top: '20px', right: '20px', width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(0,0,0,0.5)', color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(10px)', zIndex: 10 }}>
                 <X size={20} />
               </button>
-              <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '40px', background: 'linear-gradient(to top, var(--bg), transparent)', zIndex: 5 }}>
-                <h2 style={{ fontSize: '2.25rem', fontWeight: 900, color: 'var(--text)', letterSpacing: '-0.02em' }}>{selectedCase.title}</h2>
+              <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', padding: '32px', background: 'linear-gradient(to top, var(--bg), transparent)', zIndex: 5 }}>
+                <h2 className="section-h2" style={{ color: 'var(--text)', margin: 0 }}>{selectedCase.title}</h2>
               </div>
             </div>
             <div style={{ padding: '40px', maxHeight: '55vh', overflowY: 'auto' }}>

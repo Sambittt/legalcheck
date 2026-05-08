@@ -5,7 +5,6 @@ import { Scale, Moon, Sun, Menu, X, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Navbar() {
-  const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -15,12 +14,18 @@ export default function Navbar() {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenu(false);
-  }, [location.pathname]);
+    if (mobileMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [location.pathname, mobileMenu]);
 
   return (
-    <nav className={`navbar ${mobileMenu ? 'mobile-active' : ''}`}>
+    <nav className="navbar">
       <div className="container navbar-inner">
-        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)}>
+        <Link to="/" className="nav-logo" onClick={() => setMobileMenu(false)} style={{ zIndex: 2100 }}>
           <Scale className="logo-icon" size={28} />
           <span>LegalCheck</span>
         </Link>
@@ -42,8 +47,8 @@ export default function Navbar() {
           <Link to="/check" className="btn btn-primary btn-sm">Start Analysis</Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <div className="mobile-only" style={{ display: 'none', gap: '12px', alignItems: 'center' }}>
+        {/* Mobile Toggle Container - Always on top */}
+        <div className="mobile-only" style={{ display: 'none', gap: '8px', alignItems: 'center', zIndex: 2100 }}>
           <button onClick={toggleTheme} className="btn btn-ghost btn-sm" style={{ padding: '8px' }}>
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -56,14 +61,14 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {mobileMenu && (
         <div className="mobile-menu-overlay fade-in">
-          <div className="mobile-menu-links container">
+          <div className="mobile-menu-links">
             <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
             <Link to="/articles" className={`mobile-nav-link ${isActive('/articles') ? 'active' : ''}`}>Case Studies</Link>
             <Link to="/pricing" className={`mobile-nav-link ${isActive('/pricing') ? 'active' : ''}`}>Pricing</Link>
             <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About</Link>
             <Link to="/contact" className={`mobile-nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact</Link>
             
-            <Link to="/check" className="btn btn-primary" style={{ marginTop: '20px', width: '100%', justifyContent: 'center' }}>
+            <Link to="/check" className="btn btn-primary" style={{ marginTop: '32px', width: '100%', justifyContent: 'center' }}>
               Start Free Analysis <ArrowRight size={18} />
             </Link>
           </div>

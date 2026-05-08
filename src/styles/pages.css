@@ -241,4 +241,22 @@
   transition: width 0.3s;
 }
 
+.loading-msg {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 24px;
+  color: var(--text);
+}
+
+.loading-sub {
+  font-size: 0.9rem;
+  color: var(--text3);
+  margin-top: 16px;
+}
+
+@media (max-width: 640px) {
+  .loading-msg { font-size: 1.25rem; }
+  .progress-bar { width: 180px; }
+}
+
 @keyframes spin { to { transform: rotate(360deg); } }

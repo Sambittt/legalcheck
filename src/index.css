@@ -462,57 +462,60 @@ body {
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 24px; }
-  .section { padding: 60px 0; }
-  .section-h2 { font-size: 2.25rem; }
-  .hero { padding: 140px 0 80px 0; text-align: center; }
-  .hero-h1 { font-size: 3rem; }
-  .hero-sub { margin-left: auto; margin-right: auto; }
+  .container { padding: 0 20px; }
+  .section { padding: 48px 0; }
+  .section-h2 { font-size: 1.85rem; }
+  .section-sub { font-size: 1rem; }
+  
+  .hero { padding: 120px 0 60px 0; text-align: center; min-height: auto; }
+  .hero-h1 { font-size: 2.25rem !important; line-height: 1.2; }
+  .hero-sub { font-size: 1.05rem !important; margin-bottom: 32px; }
+  .hero-mesh { opacity: 0.5; }
+  
   .nav-links { display: none !important; }
   .mobile-only { display: flex !important; }
+  
   .footer-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
   .footer-logo, .footer-desc { margin-left: auto; margin-right: auto; }
   .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
   
-  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 20px !important; }
 }
 
 /* ═══ Mobile Menu ═══ */
 .mobile-menu-overlay {
   position: fixed;
-  top: 72px; /* Navbar height */
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background: var(--bg);
-  z-index: 1000;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
-  padding: 40px 0;
+  padding: 100px 24px 40px 24px;
 }
 
 .mobile-menu-links {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .mobile-nav-link {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text);
-  padding: 12px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-decoration: none;
 }
 
 .mobile-nav-link.active {
   color: var(--accent);
 }
 
-@media (max-width: 768px) {
-  .hero-h1 { font-size: 3rem; }
-  .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+@media (max-width: 480px) {
+  .hero-h1 { font-size: 2rem !important; }
+  .btn { width: 100%; justify-content: center; }
 }
