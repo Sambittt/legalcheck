@@ -93,7 +93,7 @@ export default function ResultPage() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '40px', alignItems: 'start' }}>
+        <div className="grid-sidebar" style={{ display: 'grid', gap: '40px', alignItems: 'start' }}>
           
           <div className="report-main">
             <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', background: 'var(--bg)' }}>

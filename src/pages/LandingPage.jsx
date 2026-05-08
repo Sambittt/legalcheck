@@ -55,54 +55,50 @@ export default function LandingPage() {
         <div className="hero-gradient" style={{ background: 'linear-gradient(to right, var(--bg2) 30%, transparent 100%)' }} />
         
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '80px', alignItems: 'center' }}>
+          <div className="grid-2" style={{ alignItems: 'center' }}>
             <div className="fade-in-up">
               <div className="section-badge" style={{ background: 'rgba(var(--accent-rgb), 0.1)', borderColor: 'rgba(var(--accent-rgb), 0.2)', color: 'var(--accent)' }}>
                 <Scale size={14} /> Global AI Legal Standard
               </div>
-              <h1 className="hero-h1" style={{ fontSize: '5.5rem', marginBottom: '32px' }}>
+              <h1 className="hero-h1" style={{ marginBottom: '32px' }}>
                 Legal Intelligence <br />
                 <span className="hero-accent">Redefined.</span>
               </h1>
-              <p className="hero-sub" style={{ fontSize: '1.4rem', lineHeight: '1.6', marginBottom: '48px', color: 'var(--text2)' }}>
+              <p className="hero-sub" style={{ fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '48px', color: 'var(--text2)', maxWidth: '600px' }}>
                 The world's most advanced AI engine for immediate statutory analysis. Get a clear verdict and settlement valuation in under 30 seconds.
               </p>
-              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <Link to="/check" className="btn btn-primary btn-lg" style={{ padding: '20px 48px', borderRadius: '100px' }}>Analyze Case <ArrowRight size={20} /></Link>
-                <Link to="/articles" className="btn btn-secondary btn-lg" style={{ padding: '20px 48px', borderRadius: '100px' }}>View Outcomes</Link>
-              </div>
-              
-              <div style={{ display: 'flex', gap: '32px', marginTop: '60px', color: 'var(--text3)', fontSize: '0.9rem', fontWeight: 600 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><CheckCircle2 size={18} className="text-green" /> US, UK, CA, EU Support</div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Shield size={18} className="text-accent" /> Privacy Guaranteed</div>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                <button onClick={() => window.location.href='/check'} className="btn btn-primary btn-lg">
+                  Analyze Case <ArrowRight size={20} />
+                </button>
+                <button onClick={() => window.location.href='/articles'} className="btn btn-secondary btn-lg">
+                  View Outcomes
+                </button>
               </div>
             </div>
 
-            <div className="hero-visual" style={{ position: 'relative' }}>
-              <div className="glass" style={{ padding: '40px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', transform: 'rotate(2deg)', boxShadow: 'var(--shadow-lg)', position: 'relative', zIndex: 2 }}>
+            {/* Analysis Card - Hidden on small mobile to save space, or scaled */}
+            <div className="hero-card-container fade-in" style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="glass" style={{ padding: '32px', borderRadius: 'var(--r-lg)', border: '1px solid var(--glass-border)', width: '100%', maxWidth: '400px', boxShadow: 'var(--shadow-lg)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-                  <div style={{ fontWeight: 800, color: 'var(--text3)', fontSize: '0.75rem', textTransform: 'uppercase' }}>Current Analysis</div>
-                  <div className="status-dot green" />
+                  <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.6 }}>Current Analysis</span>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent)', animation: 'pulse 2s infinite' }} />
                 </div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '12px' }}>Wrongful Termination Case</div>
-                <div style={{ height: '8px', background: 'var(--bg3)', borderRadius: '100px', overflow: 'hidden', marginBottom: '24px' }}>
-                  <div className="progress-fill" style={{ width: '85%' }} />
+                <h4 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>Wrongful Termination Case</h4>
+                <div style={{ width: '100%', height: '4px', background: 'var(--bg3)', borderRadius: '2px', marginBottom: '24px', overflow: 'hidden' }}>
+                  <div style={{ width: '85%', height: '100%', background: 'var(--accent)', borderRadius: '2px' }} />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div style={{ background: 'var(--bg2)', padding: '16px', borderRadius: 'var(--r)' }}>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginBottom: '4px' }}>EST. PAYOUT</div>
-                    <div style={{ fontWeight: 800, color: 'var(--green)' }}>$8,500</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                  <div>
+                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>Est. Payout</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--accent)' }}>$8,500</div>
                   </div>
-                  <div style={{ background: 'var(--bg2)', padding: '16px', borderRadius: 'var(--r)' }}>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text3)', marginBottom: '4px' }}>VERDICT</div>
-                    <div style={{ fontWeight: 800, color: 'var(--accent)' }}>Likely Illegal</div>
+                  <div>
+                    <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', opacity: 0.6, marginBottom: '4px' }}>Verdict</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--green)' }}>Likely Illegal</div>
                   </div>
                 </div>
               </div>
-              
-              {/* Decorative elements */}
-              <div style={{ position: 'absolute', top: '-40px', right: '-20px', width: '200px', height: '200px', background: 'var(--accent)', filter: 'blur(100px)', opacity: 0.1, zIndex: 1 }} />
-              <div style={{ position: 'absolute', bottom: '-40px', left: '-20px', width: '200px', height: '200px', background: 'var(--green)', filter: 'blur(100px)', opacity: 0.1, zIndex: 1 }} />
             </div>
           </div>
         </div>

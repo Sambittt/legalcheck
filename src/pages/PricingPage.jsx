@@ -43,7 +43,7 @@ export default function PricingPage() {
           <p className="section-sub">Choose the level of analysis you need. From free basic checks to comprehensive premium reports.</p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px', maxWidth: '1100px', margin: '0 auto' }}>
+        <div className="grid-3" style={{ gap: '32px', maxWidth: '1200px', margin: '0 auto' }}>
           
           {/* Free Plan */}
           <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column' }}>
@@ -65,7 +65,7 @@ export default function PricingPage() {
           </div>
 
           {/* Premium Plan */}
-          <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '2px solid var(--accent)', display: 'flex', flexDirection: 'column', position: 'relative', transform: 'scale(1.05)', background: 'var(--bg)' }}>
+          <div className="glass" style={{ padding: '48px', borderRadius: 'var(--r-lg)', border: '2px solid var(--accent)', display: 'flex', flexDirection: 'column', position: 'relative', background: 'var(--bg)' }}>
             <div style={{ position: 'absolute', top: '-16px', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: '#fff', padding: '4px 16px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 800 }}>MOST POPULAR</div>
             <div style={{ marginBottom: '32px' }}>
               <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>

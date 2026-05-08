@@ -441,15 +441,78 @@ body {
 .text-red { color: var(--red); }
 .text-accent { color: var(--accent); }
 
+/* ═══ Media Queries ═══ */
+@media (max-width: 1200px) {
+  .container { padding: 0 40px; }
+  .hero-h1 { font-size: 4rem; }
+}
+
 @media (max-width: 1024px) {
+  .section { padding: 80px 0; }
   .hero-h1 { font-size: 3.5rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
+.grid-sidebar {
+  grid-template-columns: 1fr 340px;
+}
+
+@media (max-width: 1024px) {
+  .grid-sidebar { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 768px) {
-  .hero-h1 { font-size: 2.75rem; }
-  .hero-img-bg { width: 100%; opacity: 0.15; }
-  .nav-links { display: none; }
+  .container { padding: 0 24px; }
+  .section { padding: 60px 0; }
   .section-h2 { font-size: 2.25rem; }
-  .footer-inner { grid-template-columns: 1fr; }
+  .hero { padding: 140px 0 80px 0; text-align: center; }
+  .hero-h1 { font-size: 3rem; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .nav-links { display: none !important; }
+  .mobile-only { display: flex !important; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+  .footer-logo, .footer-desc { margin-left: auto; margin-right: auto; }
+  .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; gap: 24px !important; }
+}
+
+/* ═══ Mobile Menu ═══ */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 72px; /* Navbar height */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-nav-link.active {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .hero-h1 { font-size: 3rem; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
 }
