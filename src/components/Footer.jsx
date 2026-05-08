@@ -56,7 +56,8 @@ export default function Footer() {
 
       <div className="container footer-bottom">
         <p>&copy; {new Date().getFullYear()} LegalCheck AI. All rights reserved.</p>
-        <div style={{ display: 'flex', gap: '24px' }}>
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+          <span style={{ fontSize: '0.7rem', opacity: 0.5 }}>v1.2.4-EMERALD</span>
           <span>Powered by Groq Cloud</span>
           <span>SSL Secure</span>
         </div>

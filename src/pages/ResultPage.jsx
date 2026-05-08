@@ -101,7 +101,7 @@ export default function ResultPage() {
                 <div>
                   <div className="section-badge" style={{ marginBottom: '12px' }}>Intelligence Report</div>
                   <h1 style={{ fontSize: '2rem', fontWeight: 800 }}>Analysis Verdict</h1>
-                  <p style={{ color: 'var(--text3)', fontSize: '0.85rem', marginTop: '4px' }}>Case Ref: LC-{Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
+                  <p style={{ color: 'var(--text3)', fontSize: '0.85rem', marginTop: '4px' }}>Case Ref: LC-{caseId}</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text3)' }}>Jurisdiction</div>

@@ -30,7 +30,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p style={{ fontWeight: 700, fontSize: '0.9rem' }}>Email Us</p>
-                      <p style={{ color: 'var(--text3)', fontSize: '0.9rem' }}>legalcheck.ai@gmail.com</p>
+                      <p style={{ color: 'var(--text3)', fontSize: '0.9rem' }}>contact.legalcheckai@gmail.com</p>
+                      <p style={{ color: 'var(--text3)', fontSize: '0.8rem', marginTop: '4px' }}>Alt: ai.legalcheck@gmail.com</p>
                     </div>
                   </div>
                   <div style={{ display: 'flex', gap: '16px' }}>
